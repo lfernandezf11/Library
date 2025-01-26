@@ -31,22 +31,6 @@ public class User {
     private LocalDate fechaAlta;
     private String email;
 
-
-    /**
-     * Constructor por defecto del objeto Usuario. Necesario para crear un objeto "vacío" Usuario que sobreescribir con la info de un
-     * objeto único resultado de una búsqueda.
-     * Ej.: para usar el método searchbyAlias de la clase GestorUsers.
-     */
-    /*public User() {
-        this.userID=0;
-        this.nombre="Usuario";
-        this.apellido="No registrado";
-        this.alias="usno00";
-        this.password="Usuario.00";
-        this.esAdmin=false;
-        this.fechaAlta=LocalDate.now();
-        this.email="bibliotecaLock_Stock@gmail.com";
-     }
     /**
      * Constructor para generar un objeto Usuario parametrizado, los valores los ingresa el user Admin, excepto la fecha, que se asigna con la
      * clase LocalDate.
@@ -97,17 +81,42 @@ public class User {
     
     /**
      * Setters para cada atributo, excepto para UserID y fechaAlta, que se mantienen desde la creación.
-     * Establece el valor para cada atributo del objeto recibido por parámetro.
+     * Establece el valor para cada atributo del objeto recibido por parámetro. Validamos la entrada de datos y devolvemos un boolean
+     * para saber si la operación ha tenido éxito. En caso contrario, podremos establecer un bucle que pida el valor de nuevo.
      */
-    public void setNombre(String nombre){
-        this.nombre=nombre;
+    /* Para setNombre y setApellido aplicamos una REGEX que coteje que el valor introducido comienza por al menos tres letras,
+     * tras lo cual puede seguirse de cero o más ocurrencias de una segunda cadena de letras, incluyendo espacios.
+     */
+     public Boolean setNombre(String nombre){
+        if (nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3}[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s-]*$")) {
+            this.nombre = nombre;
+            return true;
+        }else{
+            return false;
+        }
     }
-    public void setApellido(String apellido){
-        this.apellido=apellido;
+    public Boolean setApellido(String apellido){
+        if (apellido.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3}[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s-]*$")) {
+            this.apellido = apellido;
+            return true;
+        }else{
+            return false;
+        }
     }
-    public void setAlias(String alias){
-        this.alias=alias;
+    /* Para setAlias sólo admitiremos inputs alfanuméricos en minúscula, excluyendo acentos, espacios o símbolos especiales, con una longitud
+     * mínima de 6 caracteres (que es lo que presuponemos que ocupan dos sílabas y dos números) y máximo 12.
+     */
+    public Boolean setAlias(String alias){
+        if (alias.matches("^(?=.{6,12})[a-z0-9]*$")) {
+            this.alias = alias;
+            return true;
+        }else{
+            return false;
+        }
     }
+    /* setPassword acepta inputs alfanuméricos, tanto mayúscula como minúscula, y algunos símbolos especiales - _ . excluyendo espacios y acentos.
+     * Longitud mínima de 6 caracteres y máxima de 8. 
+     */
     public void setPassword(String password){
         this.password=password;
     }
