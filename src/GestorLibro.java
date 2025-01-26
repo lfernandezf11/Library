@@ -30,6 +30,23 @@ public class GestorLibro {
         }
         return Arrays.copyOf(resultado, autorLleno);
     }
+    /*Buscar el índice del Libro por Título */
+    private int buscarIndiceLibro(String titulo){
+        int buscar = -1;
+        for(int i = 0; i < lleno && buscar == -1; i++){
+            if (libros[i].gettitulo().equals(titulo)){
+                buscar = i;
+            }
+        }return buscar;
+    }
+    /*Busca un Libro por título */
+    public Libro buscarLibro(String titulo){
+        Libro buscar = null;
+        int indice = buscarIndiceLibro(titulo);
+        if(indice != -1){
+            buscar = libros[indice];
+        }return buscar;
+    }
     /*Eliminar Libro por título */
     public boolean eliminarLibro(String titulo){
         int indice = buscarIndiceLibro(titulo);
@@ -44,13 +61,16 @@ public class GestorLibro {
             return false;
         }
     }
-    /*Buscar el índice del libro por el título */
-    private int buscarIndiceLibro(String titulo){
+    /*Buscar Libros por categoría */
+    public Libro[] buscarporCategoria(Categorialibro categorialibro){
+        Libro[]resultado=new Libro[TAM];
+        int categoriaLlena = 0;
         for(int i = 0; i < lleno; i++){
-            if(libros[i].gettitulo().equals(titulo)){
-                return i; /*Retornamos el índice si encontramos el libro */
+            if(libros[i].getCategorialibro().equals(categorialibro)){
+                resultado[categoriaLlena] = libros[i];
+                categoriaLlena++;
             }
-        }return -1; /*Si no se encuentra el libro, retornamos -1 */
+        }return Arrays.copyOf(resultado, categoriaLlena);
     }
     /*Mostrar todos los libros (si no hay libros almacenados en el sistema lo indica) */
     public void mostrarLibros(){

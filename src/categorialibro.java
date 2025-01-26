@@ -1,3 +1,3 @@
 public enum Categorialibro {
-    Juvenil, CienciaFiccion, Fantasia, Ensayo, Biografia, NovelaGrafica, Thriller, Poesia, Infantil, Clasico, Historia, Misterio, Romance
+    JUVENIL, CIENCIASFICCION, FANTASIA, ENSAYO, BIOGRAFIA, NOVELAGRAFICA, THRILLER, POESIA, INFANTIL, CLASICO, HISTORIA, MISTERIO, ROMANCE
 }
