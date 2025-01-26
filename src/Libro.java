@@ -1,14 +1,16 @@
 public class Libro {
     private String titulo;
     private String autor;
-    private String genero;
+    private String categoria;
     private int idLibro;
+    private int fechapubli;
 
-    public Libro(String titulo, String autor, String genero, int idLibro){
+    public Libro(String titulo, String autor, String categoria, int idLibro, int fechapubli){
         this.titulo=titulo;
         this.autor=autor;
-        this.genero=genero;
+        this.categoria=categoria;
         this.idLibro = idLibro;
+        this.fechapubli=fechapubli;
     }
     public void settitulo(String titulo){
         this.titulo=titulo;
@@ -16,11 +18,14 @@ public class Libro {
     public void setautor(String autor){
         this.autor=autor;
     }
-    public void setgenero(String genero){
-        this.genero=genero;
+    public void setgenero(String categoria){
+        this.categoria=categoria;
     }
     public void setidLibro(int idLibro){
         this.idLibro=idLibro;
+    }
+    public void setfechapubli(int fechapubli){
+        this.fechapubli=fechapubli;
     }
     public String gettitulo(){
         return titulo;
@@ -28,17 +33,20 @@ public class Libro {
     public String getautor(){
         return autor;
     }
-    public String getgenero(){
-        return genero;
+    public String getcategoria(){
+        return categoria;
     }
     public int getidLibro(){
         return idLibro;
+    }
+    public int getfechapubli(){
+        return fechapubli;
     }
     public String toString(){
         return "{" +
                 " titulo='" + gettitulo() + "'" +
                 ", autor='" + getautor() + "'" +
-                ", genero='" + getgenero() + "'" +
+                ", genero='" + getcategoria() + "'" +
                 "}";
     }
 }
