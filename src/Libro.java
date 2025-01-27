@@ -47,7 +47,8 @@ public class Libro {
                 " titulo='" + gettitulo() + "'" +
                 ", autor='" + getautor() + "'" +
                 ", categoria='" + getCategorialibro() + "'" +
-                "}";
+                ", año publicación=" + getfechapubli() + "'" +
+               "}";
     }
 }
 

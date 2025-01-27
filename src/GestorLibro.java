@@ -82,6 +82,21 @@ public class GestorLibro {
             }
         }
     }
+    /*Devolver los libros como String */
+    public String toString(){
+        String stringLibro = "";
+        for(int i = 0; i < lleno; i++){
+            stringLibro += libros[i].toString() + "\n";
+        }return stringLibro;
+    }
+
+/*Devuelve un array de libros como String */
+public static String toString(Libro[]arrayLibro){
+    String stringLibro = "";
+    for(Libro libro : arrayLibro){
+        stringLibro += libro.toString() + "\n";
+    }return stringLibro;
+}
 
     /*public void menu(){
         int opcion=0;
