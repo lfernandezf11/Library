@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class Libromain {
     public static void main(String[] args) throws Exception {
-        public void menu(){
         int opcion=0;
         do{
             System.out.println("GESTOR DE LIBROS");
@@ -18,6 +17,8 @@ public class Libromain {
             System.out.println("4.Mostrar libro");
             
         }while(opcion != 0);
+        
+    }
     
         GestorLibro gestor = new GestorLibro();
     gestor.agregarLibro(new Libro("El niño con el pijama de rayas", "John Boyne", Categorialibro.JUVENIL, 1, 2006));
@@ -53,3 +54,6 @@ public class Libromain {
         System.out.println("Todos los libros:\n" + gestor.toString() + "\n");
     }
 }
+
+
+

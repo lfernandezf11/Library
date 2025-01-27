@@ -40,7 +40,6 @@ public class User {
      * La fechaAlta se asigna automáticamente con la clase LocalDate.
      */
 
-    //IMPLEMENTAR UN ID AUTOINCREMENTAL QUE NO REPITA VALORES!!!
     //Implementar un modo de conservar la fecha de alta y el IDUser en el método update de GestorUser!!!
     public User(int userID, String nombre, String apellido, String alias, String password, Boolean esAdmin, LocalDate fechaAlta, String email) {
        this.userID=numID;
