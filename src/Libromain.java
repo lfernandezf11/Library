@@ -1,7 +1,24 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Libromain {
     public static void main(String[] args) throws Exception {
+        public void menu(){
+        int opcion=0;
+        do{
+            System.out.println("GESTOR DE LIBROS");
+            System.out.println("----------------");
+            System.out.println("1.Agregar libro");
+            System.out.println("2.Buscar Libro");
+                System.out.println("2.1.Buscar Libro por título");
+                System.out.println("2.2.Buscar Libro por autor");
+                System.out.println("2.3.Buscar Libro por categoría");
+            System.out.println("3.Eliminar Libro");
+            System.out.println("3.1.EliminarLibro por autor");
+            System.out.println("4.Mostrar libro");
+            
+        }while(opcion != 0);
+    
         GestorLibro gestor = new GestorLibro();
     gestor.agregarLibro(new Libro("El niño con el pijama de rayas", "John Boyne", Categorialibro.JUVENIL, 1, 2006));
     gestor.agregarLibro(new Libro("Dune", "Frank Herbert", Categorialibro.CIENCIASFICCION, 2, 1965));
@@ -22,12 +39,12 @@ public class Libromain {
 
         /*Todos los libros */
         System.out.println("Todos los libros:");
-        System.out.println(gestor);
+        System.out.println(gestor.toString());
         /*Buscar libros por título */
-        System.out.println("Buscar libro por autor: " + gestor.buscarLibro("titulo del libro") + "\n");
+        System.out.println("Buscar libro por autor: " + gestor.buscarLibro(sc.nextLine()) + "\n");
         /*Buscar libros por autor */
         System.out.println("Libros de (el autor que sea):\n" + GestorLibro.toString(gestor.buscarporAutor("autor que buscar")) + "\n");
-        /*Buscar canciones por categoría */
+        /*Buscar libros por categoría */
         System.out.println("Libros de (categoria que sea):" + Arrays.toString(gestor.buscarporCategoria(Categorialibro."categoria")) + "\n");
         /*Eliminar un libro por autor*/
         gestor.eliminarLibro("el libro a eliminar");
