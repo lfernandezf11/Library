@@ -22,7 +22,9 @@
  * @param email     email de contacto
  * */
 public class User {
-    private int userID;
+    private final int userID; /*Para asignar y autoincrementar el userID en la creación del objeto, implementamos un contador numID que irá sumando uno
+                                en cada creación. Hemos de asegurar que userID y fechaAlta se conservan en el updateUser de la clase GestorUsers.*/ 
+    private int numID = 1;
     private String nombre;
     private String apellido;
     private String alias; 
@@ -30,15 +32,18 @@ public class User {
     private Boolean esAdmin;
     private LocalDate fechaAlta;
     private String email;
+    
 
     /**
-     * Constructor para generar un objeto Usuario parametrizado, los valores los ingresa el user Admin, excepto la fecha, que se asigna con la
-     * clase LocalDate.
+     * Constructor para generar un objeto Usuario parametrizado. Lo utilizaremos para crear el repositorio inicial de forma más rápida.
+     * En el main, no obstante, construiremos objetos mediante SETTERS, a través de los cuales se validan los inputs (podría hacerse aquí tb). 
+     * La fechaAlta se asigna automáticamente con la clase LocalDate.
      */
 
     //IMPLEMENTAR UN ID AUTOINCREMENTAL QUE NO REPITA VALORES!!!
-    public User(int userID, String nombre, String apellido, String alias, String password, Boolean esAdmin, String email) {
-       this.userID=userID;
+    //Implementar un modo de conservar la fecha de alta y el IDUser en el método update de GestorUser!!!
+    public User(int userID, String nombre, String apellido, String alias, String password, Boolean esAdmin, LocalDate fechaAlta, String email) {
+       this.userID=numID;
        this.nombre=nombre;
        this.apellido=apellido;
        this.alias=alias;
@@ -46,6 +51,7 @@ public class User {
        this.esAdmin=esAdmin;
        this.fechaAlta=LocalDate.now();
        this.email=email;
+       numID++;
     }
 
     /**
@@ -76,8 +82,6 @@ public class User {
     public String getEmail(){
         return this.email;
     }
-
-    /*ESTABLECER AQUÍ VALIDADORES DE ENTRADA DE DATOS!!!*/
     
     /**
      * Setters para cada atributo, excepto para UserID y fechaAlta, que se mantienen desde la creación.
@@ -117,14 +121,30 @@ public class User {
     /* setPassword acepta inputs alfanuméricos, tanto mayúscula como minúscula, y algunos símbolos especiales - _ . excluyendo espacios y acentos.
      * Longitud mínima de 6 caracteres y máxima de 8. 
      */
-    public void setPassword(String password){
-        this.password=password;
+    public Boolean setPassword(String password){
+        if (password.matches("^(?=.{6,8})[a-z0-9_.-]*$")) {
+            this.password = password;
+            return true;
+        }else{
+            return false;
+        }
     }
-    public void setEsAdmin(Boolean esAdmin){
+    public void setEsAdmin(Boolean esAdmin){ //No necesita retorno, por defecto el valor es true.
         this.esAdmin=esAdmin;
     }
-    public void setEmail(String email){
-        this.email=email;
+    /* setMail establece como formato de input, siempre en minúscula:
+     * - Dominio local: alfanuméricos y caracteres -_+&*. 
+     * - Arroba.
+     * - Dominio: alfanuméricos y guion
+     * - Extensión de dominio: inicio en punto, al menos 2 letras, máximo 6.
+     */
+    public Boolean setEmail(String email){
+        if (email.matches("^[a-z0-9_+&*-.]+@[a-z0-9-]+\\.[a-z]{2,6}$")) {
+            this.email = email;
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**

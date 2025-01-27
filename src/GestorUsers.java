@@ -77,18 +77,71 @@ public class GestorUsers {
     */
     public User[] searchbyAdminNoAdmin(Boolean esAdmin){
         User[] resultado = new User[tam];
-        int filled = 0;
-        for(int i=0; i<filled; i++){
+        int tipoFilled = 0;
+        for(int i=0; i<tipoFilled; i++){
             if(usuarios[i].getEsAdmin().equals(esAdmin)){
-                resultado[filled]=usuarios[i];
-                filled++;
+                resultado[tipoFilled]=usuarios[i];
+                tipoFilled++;
             }
         }return Arrays.copyOf(resultado, filled);
     }
-    
-    /** updateUser actualiza la información de un Usuario, excepto userID y fechaAlta, que se establecen en el momento de creación.*/
-    public Boolean UserActualizado()
 
+    /** updateUser actualiza la información de un Usuario, excepto userID y fechaAlta, que se establecen en el momento de creación.
+     * Para asegurar que se conservan estos dos campos, asignamos al objeto ya creado los parámetros del objeto actualizado mediante Setters,
+     * y excluimos ID y fecha.
+     * @param actualizado objeto con info actualizada.
+     * @return estado de la actualización. False si no se encuentra el alias coincidente.
+    */
+    public boolean updateUser(User actualizado){
+        for(int i=0; i<filled; i++){
+            if(usuarios[i].getAlias().equals(actualizado.getAlias())){}
+                usuarios[i].setNombre(actualizado.getNombre());
+                usuarios[i].setApellido(actualizado.getApellido());
+                usuarios[i].setPassword(actualizado.getPassword());
+                usuarios[i].setEsAdmin(actualizado.getEsAdmin());
+                usuarios[i].setEmail(actualizado.getEmail());
+                return true;
+        }
+        return false;
     }
+
+    /** deleteUser elimina un objeto del array usuarios introduciendo su alias.
+     * @param alias alias del usuario.
+     * @return booleano true/false que controla que la operación se ha realizado con éxito.
+    */
+    public Boolean deleteUser(String alias) {
+        for(int i=0; i<filled; i++){
+            if(usuarios[i].getAlias().equals(alias)){ 
+            /*Encontrado el alias coincidente, iniciamos bucle para desplazar a la posición anterior los objetos que le suceden, 
+            accediendo como última posición válida a filled-1 (puesto que la posición filled quedará vacía).*/
+                for (int j=i; j<filled-1; j++){
+                    usuarios[j]=usuarios[j+1];
+                }
+                usuarios[--filled] = null; //Vaciamos la posición final, marcándola nula.
+                return true;
+            }
+        }
+        return false;
+    }
+    /** String toString devuelve un array de usuarios en una cadena.
+     * Apreciaciones: 
+     * - Cuando un método es estático (vs. de instancia) puede manejar arrays externos a la clase sin necesidad de crear una instancia GestorUsers.
+     * - En el bucle que recorre el array, no podemos utilizar como condición de salida i < filled, porque filled es un campo no estático.
+     *   Lo sustituimos por la longitud del array, asegurando que no se imprimen los objetos nulos.  
+     * - Utilizamos el método toString ya establecido en la clase User para cada objeto del array. 
+     *   Como este método ya está sobreescrito, no hace falta hacer aquí un @Override.
+     * @param arrayUsuarios array de Usuarios para convertir a String.
+     * @return Una cadena con la información de cada objeto String, separados por un salto de línea.
+     */
+    public static String toString(GestorUsers [] arrayUsuarios) {
+    String stringUsuarios = "";
+    for (int i = 0; i < arrayUsuarios.length; i++) {
+        if(arrayUsuarios[i] != null){
+            stringUsuarios += arrayUsuarios[i].toString() + "\n";
+        } 
+    }
+    return stringUsuarios;
+}
+}
     
 
