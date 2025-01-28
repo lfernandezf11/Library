@@ -133,7 +133,7 @@ public class GestorUsers {
      * @param arrayUsuarios array de Usuarios para convertir a String.
      * @return Una cadena con la información de cada objeto String, separados por un salto de línea.
      */
-    public static String toString(GestorUsers [] arrayUsuarios) {
+    public static String toString(User [] arrayUsuarios) {
     String stringUsuarios = "";
     for (int i = 0; i < arrayUsuarios.length; i++) {
         if(arrayUsuarios[i] != null){
