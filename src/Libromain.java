@@ -59,8 +59,42 @@ public class Libromain {
         System.out.println("Libros después de eliminar:\n" + GestorLibro.toString(gestor.buscarporAutor("autor que buscar")) + "\n");
         /*Todas los libros para ver los cambios */
         System.out.println("Todos los libros:\n" + gestor.toString() + "\n");
+
+
         
+    Scanner sc = new Scanner(System.in);
+    public void buscarLibroporTitulo() {
+        System.out.println("Introduce el título del libro a buscar:");
+        String titulo = sc.nextLine();
+        System.out.println(GestorLibro.toString(gestor.buscarLibro(titulo)));
     }
+
+    public void buscarLibroporAutor() {
+        System.out.println("Introduce el autor del libro a buscar:");
+        String autor = sc.nextLine();
+        System.out.println(GestorLibro.toString(gestor.buscarLibro(autor)));
+    }
+
+    public void buscarLibroporCategoria() {
+        System.out.println("Introduce la categoría del libro a buscar:");
+        String categoria = sc.nextLine();
+        System.out.println(Arrays.toString(gestor.buscarporCategoria(categoria)));
+    }
+
+    public void eliminarLibroporAutor() {
+        System.out.println("Introduce el autor del libro que desea eliminar:");
+        String autor = sc.nextLine();
+        boolean eliminado = gestor.eliminarLibroPorAutor(autor);
+        
+        if (eliminado) {
+            System.out.println("Los libros del autor '" + autor + "' han sido eliminados.");
+        } else {
+            System.out.println("No se encontraron libros de ese autor.");
+        }
+    }
+}
+    }
+
 }
 
 
