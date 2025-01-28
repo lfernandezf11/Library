@@ -3,29 +3,7 @@ import java.util.Scanner;
 
 public class Libromain {
     public static void main(String[] args) throws Exception {
-        int opcion=0;
-        do{
-            System.out.println("GESTOR DE LIBROS");
-            System.out.println("----------------");
-            System.out.println("1.Agregar libro");
-            System.out.println("2.Buscar Libro");
-                System.out.println("2.1.Buscar Libro por título");
-                System.out.println("2.2.Buscar Libro por autor");
-                System.out.println("2.3.Buscar Libro por categoría");
-            System.out.println("3.Eliminar Libro");
-            System.out.println("3.1.EliminarLibro por autor");
-            System.out.println("4.Mostrar libro");
-            switch (opcion) {
-                case 1 -> agregarLibro();
-                case 2 -> buscarLibro();
-                case 3 -> eliminarLibro();
-                case 4 -> Estadisticadeuso();
-                default -> System.out.println("Operación incorrecta");
-            }
-            
-        }while(opcion != 0);
-        
-    }
+    
     public void repositoriolibro(){ 
         GestorLibro gestor = new GestorLibro();
     gestor.agregarLibro(new Libro("El niño con el pijama de rayas", "John Boyne", Categorialibro.JUVENIL, 1, 2006));
@@ -79,7 +57,7 @@ public class Libromain {
 }
     }
 
-}
+
 
 
 
