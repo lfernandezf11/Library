@@ -3,6 +3,11 @@ import java.util.Scanner;
 public class Menu {
     Scanner sc = new Scanner(System.in); /*ESTABLECER PARA TODO EL MAIN!!!!!*/
     
+//LUCÍA.
+/*IMPLEMENTAR MENÚ LOGIN, 5 INTENTOS, FIN DEL PROGRAMA.
+ * MÉTODO IF USER.GETALIAS.EQUALS(ALIAS) && USER.GETPASSWORD.EQUALS(PASSWORD) == LOGIN: TRUE.
+*/
+
 
 /*Menú para usuarios Administradores */  
     public void menuAdmin(){
@@ -89,7 +94,7 @@ public class Menu {
                     case 3 -> préstamo;
                     case 4 -> devolver;
                     case 0 -> System.out.println("Saliendo del programa...");
-                              admin = false;
+                              noadmin = false;
                     default: -> System.out.println("Valor introducido no válido. Prueba de nuevo.");
         }*/
     
@@ -97,6 +102,7 @@ public class Menu {
     }
 
 /*Menú para búsqueda de libro por filtro.*/
+//TERESA
     public void menuBusquedaLibro(){
         boolean filtrolibro = true;    
 
@@ -116,10 +122,54 @@ public class Menu {
 
             int opcion = Integer.parseInt(sc.nextLine());
 
-            //Switch para elección de opciones, usuario no administrador.
+            //Switch para elección de opciones, búsqueda de libro por filtro.
                 /*switch (opcion) {
-                    case 1 -> funcion busquedalibro que utilice despliegue un menú tipo de búsqueda y utilice los metodos buscar por titulo, autor, categoria.;
-                    case 2 -> sout + metodo de busquedaporestatus + Libro[].toString;*/
-    }while(filtrolibro);
+                    case 'a' -> sout + busquedaportitulo.
+                    case 'b' -> sout + busquedaporautor.
+                    case 'c' -> sout + busquedaporcategoria.
+                    case 'd' -> sout + busquedaporaño.
+                    case '0' -> System.out.println("Saliendo del programa...");
+                                filtrolibro = false;    
+                    case '1' -> if admin menuadmin else menunoadmin           CÓMO LO HAGO????*/ 
+        }while(filtrolibro);
     }
+
+/*Menú para búsqueda de usuario por filtro.*/
+//LUCÍA
+    public void menuBusquedaUsuario(){
+        boolean filtroUser = true;    
+
+        do{
+            System.out.println(".____________________________________________________.");
+            System.out.println("|          CONSULTAR INFORMACIÓN DE USUARIOS         |");
+            System.out.println("|---------- ¿Qué operación deseas realizar? ---------|");
+            System.out.println("|                                                    |");
+            System.out.println("|      a) Búsqueda por apellido.                     |");
+            System.out.println("|      b) Búsqueda por nombre de usuario.            |");
+            System.out.println("|      c) Búsqueda por dirección email.              |");
+            System.out.println("|      d) Búsqueda por tipo de usuario.              |");
+            System.out.println("|      e) Actualización de datos de usuario.         |");
+            System.out.println("|      f) Borrado de usuario.                        |");
+            System.out.println("|                                                    |");
+            System.out.println("|---------- Pulsa 0 para salir del programa ---------|");  
+            System.out.println("|------ Pulsa 1 para volver al menú principal -------|");  
+            System.out.println("|____________________________________________________|"); 
+
+            int opcion = Integer.parseInt(sc.nextLine());
+
+            //Switch para elección de opciones, búsqueda de información de usuarios por filtro, para administradores.
+                /*switch (opcion) {
+                    case 'a' -> sout + busquedaporapellido.
+                    case 'b' -> sout + busquedaporalias.
+                    case 'c' -> sout + busquedapormail.
+                    case 'd' -> sout + uptadeuser.
+                    case 'e' -> sout + update user.
+                    case 'f' -> sout + delete user.
+                    case '0' -> System.out.println("Saliendo del programa...");
+                                filtroUser = false;    
+                    case '1' -> if admin menuadmin else menunoadmin           CÓMO LO HAGO????*/ 
+        }while(filtroUser);
+    }
+
+
 }
