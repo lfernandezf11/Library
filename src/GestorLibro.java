@@ -82,6 +82,16 @@ public class GestorLibro {
             }
         }
     }
+    public Libro[] obtenerLibrosDisponibles(){
+        Libro[] disponible = new Libro[TAM];
+        int contDisponible = 0;
+        for(int i = 0; i < lleno; i++){
+            if (libros[i].isdisponible()){
+                disponible [contDisponible] = libros[i];
+                contDisponible++;
+            }
+        }return Arrays.copyOf(disponible, contDisponible);
+    }
     /*Devolver los libros como String */
     public String toString(){
         String stringLibro = "";
