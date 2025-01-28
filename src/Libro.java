@@ -30,7 +30,7 @@ public class Libro {
         this.fechapubli=fechapubli;
     }
     public boolean setdisponible(){
-        return disponible;
+        this.disponible=disponible;
     }
     public String gettitulo(){
         return this.titulo;

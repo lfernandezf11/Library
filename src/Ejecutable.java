@@ -208,27 +208,41 @@ public class Ejecutable {
     public void buscarLibroporTitulo() {
         GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce el título del libro a buscar:");
-        Libro  resultado=gestor.buscarLibro(sc.nextLine());
+        Libro resultado=gestor.buscarLibro(titulo);
+        if (resultado != null) {
+            System.out.println("Libro encontrado:" + resultado);
+        } else {
+            System.out.println("No se encontró ningún libro con el título indicado");
+        }
     }
+    
 
     public void buscarLibroporAutor() {
         GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce el autor del libro a buscar:");
         String autor = sc.nextLine();
-        Libro[]resultado=gestor.buscarporAutor(sc.nextLine());
+        Libro[]resultado=gestor.buscarporAutor(autor);
+        if (resultado.length == 0){
+            System.out.println("No se encontraron libros del autor: " + autor);
+        }else{
+            System.out.println("Libros encontrados de " + autor + ":");
+        }for(Libro libro : resultado){
+            System.out.println(libro);
+        }
     }
-
+/*No se como hacerla porque la salida que espera es un enum */
     public void buscarLibroporCategoria() {
         GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce la categoría del libro a buscar:");
         String categoria = sc.nextLine();
-        Libro resultado=gestor.buscarporCategoria(sc.nextLine());
+        Libro[]resultado=gestor.buscarporCategoria(categoria);
     }
 
     public void eliminarLibroporAutor() {
+        GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce el autor del libro que desea eliminar:");
         String autor = sc.nextLine();
-        boolean eliminado = gestor.eliminarLibroPorAutor(autor);
+        boolean eliminado = gestor.eliminarLibro(sc.nextLine());
         
         if (eliminado) {
             System.out.println("Los libros del autor '" + autor + "' han sido eliminados.");
@@ -236,9 +250,6 @@ public class Ejecutable {
             System.out.println("No se encontraron libros de ese autor.");
         }
     }
-}
-    }
-
 }
 
 
