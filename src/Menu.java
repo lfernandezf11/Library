@@ -22,20 +22,21 @@ public class Menu {
             System.out.println("|      1) Agregar un libro nuevo.                    |");
             System.out.println("|      2) Buscar un libro.                           |");
             System.out.println("|      3) Mostrar los libros disponibles.            |");
+            System.out.println("|      4) Eliminar un libro.                         |");
             System.out.println("|                                                    |");
             System.out.println("| __USUARIOS:                                        |");
-            System.out.println("|      4) Dar de alta un nuevo usuario.              |");
-            System.out.println("|      5) Consultar datos de usuario existente.      |");
+            System.out.println("|      5) Dar de alta un nuevo usuario.              |");
+            System.out.println("|      6) Consultar datos de usuario existente.      |");
             System.out.println("|                                                    |");
             System.out.println("| __PRÉSTAMOS:                                       |");
-            System.out.println("|      6) Solicitar un préstamo.                     |");
-            System.out.println("|      7) Devolver un libro prestado.                |");
+            System.out.println("|      7) Solicitar un préstamo.                     |");
+            System.out.println("|      8) Devolver un libro prestado.                |");
             System.out.println("|                                                    |");
             System.out.println("| __ESTADÍSTICAS E INFORMES:                         |");   
-            System.out.println("|      8) N. de préstamos totales.                   |");     
-            System.out.println("|      9) N. de préstamos activos.                   |");  
-            System.out.println("|     10) Libros más populares.                      |");   
-            System.out.println("|     11) Usuario con más préstamos activos.         |"); 
+            System.out.println("|      9) N. de préstamos totales.                   |");     
+            System.out.println("|     10) N. de préstamos activos.                   |");  
+            System.out.println("|     11) Libros más populares.                      |");   
+            System.out.println("|     12) Usuario con más préstamos activos.         |"); 
             System.out.println("|                                                    |");
             System.out.println("|---------- Pulsa 0 para salir del programa ---------|");  
             System.out.println("|____________________________________________________|"); 
@@ -47,15 +48,16 @@ public class Menu {
                     case 1 -> función altalibro que utilice el método agregarlibro;
                     case 2 -> funcion busquedalibro que utilice despliegue un menú tipo de búsqueda y utilice los metodos buscar por titulo, autor, categoria.;
                     case 3 -> sout + metodo de busquedaporestatus + Libro[].toString;
-                    case 4 -> //LUCIA. ALTA USUARIO.
-                    case 5 -> //LUCÍA. BÚSQUEDA USUARIO. MENÚ TIPO BUSQUEDA.
+                    case 4 -> sout + metodoeliminarlibro.
+                    case 5 -> //LUCIA. ALTA USUARIO.
+                    case 6 -> //LUCÍA. BÚSQUEDA USUARIO. MENÚ TIPO BUSQUEDA.
                 //PENDIENTE DE IMPLEMENTACIÓN EN CLASES
-                    case 6 -> préstamo;
-                    case 7 -> devolver;
-                    case 8 -> préstamostotales;
-                    case 9 -> préstamosactivos;
-                    case 10 -> másprestados;
-                    case 11 -> usuarioconmáspréstamos.
+                    case 7 -> préstamo;
+                    case 8 -> devolver;
+                    case 9 -> préstamostotales;
+                    case 10 -> préstamosactivos;
+                    case 11 -> másprestados;
+                    case 12 -> usuarioconmáspréstamos.
                     case 0 -> System.out.println("Saliendo del programa...");
                               admin = false;
                     default: -> System.out.println("Valor introducido no válido. Prueba de nuevo.");
@@ -114,7 +116,6 @@ public class Menu {
             System.out.println("|      a) Por título.                                |");
             System.out.println("|      b) Por autor.                                 |");
             System.out.println("|      c) Por categoría.                             |");
-            System.out.println("|      d) Por año de publicación.                    |");
             System.out.println("|                                                    |");
             System.out.println("|---------- Pulsa 0 para salir del programa ---------|");  
             System.out.println("|------ Pulsa 1 para volver al menú principal -------|");  
@@ -127,7 +128,6 @@ public class Menu {
                     case 'a' -> sout + busquedaportitulo.
                     case 'b' -> sout + busquedaporautor.
                     case 'c' -> sout + busquedaporcategoria.
-                    case 'd' -> sout + busquedaporaño.
                     case '0' -> System.out.println("Saliendo del programa...");
                                 filtrolibro = false;    
                     case '1' -> if admin menuadmin else menunoadmin           CÓMO LO HAGO????*/ 
@@ -169,6 +169,18 @@ public class Menu {
                                 filtroUser = false;    
                     case '1' -> if admin menuadmin else menunoadmin           CÓMO LO HAGO????*/ 
         }while(filtroUser);
+    }
+
+    public static void buscaApellido(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce el apellido del usuario: ");
+        GestorUsers apellidos = new GestorUsers();
+        User[] usuarios = apellidos.searchbyApellido(sc.nextLine());
+        if(usuarios != null && usuarios.length > 0){ //Comprobación extra: el array no es nulo y tiene al menos un elemento.
+            System.out.println(GestorUsers.toString(usuarios));
+        }else{
+            System.out.println("No hay coincidencias para esta búsqueda.");
+        }
     }
 
 
