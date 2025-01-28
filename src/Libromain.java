@@ -15,16 +15,23 @@ public class Libromain {
             System.out.println("3.Eliminar Libro");
             System.out.println("3.1.EliminarLibro por autor");
             System.out.println("4.Mostrar libro");
+            switch (opcion) {
+                case 1 -> agregarLibro();
+                case 2 -> buscarLibro();
+                case 3 -> eliminarLibro();
+                case 4 -> Estadisticadeuso();
+                default -> System.out.println("Operación incorrecta");
+            }
             
         }while(opcion != 0);
         
     }
-    
+    public void repositoriolibro(){ 
         GestorLibro gestor = new GestorLibro();
     gestor.agregarLibro(new Libro("El niño con el pijama de rayas", "John Boyne", Categorialibro.JUVENIL, 1, 2006));
     gestor.agregarLibro(new Libro("Dune", "Frank Herbert", Categorialibro.CIENCIASFICCION, 2, 1965));
     gestor.agregarLibro(new Libro("El Señor de los Anillos", "J.R.R. Tolkien", Categorialibro.FANTASIA, 3, 1954));
-    gestor.agregarLibro(new Libro("Meditaciones", "Marco Aurelio", Categorialibro.ENSAYO, 4, 180));
+    gestor.agregarLibro(new Libro("Meditaciones", "Marco Aurelio", Categorialibro.ENSAYO, 4, 1800));
     gestor.agregarLibro(new Libro("El diario de Ana Frank", "Ana Frank", Categorialibro.BIOGRAFIA, 5, 1947));
     gestor.agregarLibro(new Libro("Maus", "Art Spiegelman", Categorialibro.NOVELAGRAFICA, 6, 1980));
     gestor.agregarLibro(new Libro("La chica del tren", "Paula Hawkins", Categorialibro.THRILLER, 7, 2015));
@@ -37,7 +44,7 @@ public class Libromain {
     gestor.agregarLibro(new Libro("El último deseo", "Andrzej Sapkowski", Categorialibro.JUVENIL, 14, 1993));
     gestor.agregarLibro(new Libro("Fahrenheit 451", "Ray Bradbury", Categorialibro.CIENCIASFICCION, 15, 1953));
     gestor.agregarLibro(new Libro("La espada de la verdad", "Terry Goodkind", Categorialibro.FANTASIA, 16, 1994));
-
+    }
         /*Todos los libros */
         System.out.println("Todos los libros:");
         System.out.println(gestor.toString());
@@ -52,6 +59,7 @@ public class Libromain {
         System.out.println("Libros después de eliminar:\n" + GestorLibro.toString(gestor.buscarporAutor("autor que buscar")) + "\n");
         /*Todas los libros para ver los cambios */
         System.out.println("Todos los libros:\n" + gestor.toString() + "\n");
+        
     }
 }
 
