@@ -183,7 +183,7 @@ public class Ejecutable {
     }
 
 
-
+   
        
     public void repositoriolibro(){ 
         GestorLibro gestor = new GestorLibro();
@@ -206,21 +206,23 @@ public class Ejecutable {
     }
      
     public void buscarLibroporTitulo() {
+        GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce el título del libro a buscar:");
-        String titulo = sc.nextLine();
-        System.out.println(GestorLibro.toString(gestor.buscarLibro(titulo)));
+        Libro  resultado=gestor.buscarLibro(sc.nextLine());
     }
 
     public void buscarLibroporAutor() {
+        GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce el autor del libro a buscar:");
         String autor = sc.nextLine();
-        System.out.println(GestorLibro.toString(gestor.buscarLibro(autor)));
+        Libro[]resultado=gestor.buscarporAutor(sc.nextLine());
     }
 
     public void buscarLibroporCategoria() {
+        GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce la categoría del libro a buscar:");
         String categoria = sc.nextLine();
-        System.out.println(Arrays.toString(gestor.buscarporCategoria(categoria)));
+        Libro resultado=gestor.buscarporCategoria(sc.nextLine());
     }
 
     public void eliminarLibroporAutor() {
