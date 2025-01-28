@@ -45,23 +45,7 @@ public class Libromain {
     gestor.agregarLibro(new Libro("Fahrenheit 451", "Ray Bradbury", Categorialibro.CIENCIASFICCION, 15, 1953));
     gestor.agregarLibro(new Libro("La espada de la verdad", "Terry Goodkind", Categorialibro.FANTASIA, 16, 1994));
     }
-        /*Todos los libros */
-        System.out.println("Todos los libros:");
-        System.out.println(gestor.toString());
-        /*Buscar libros por título */
-        System.out.println("Buscar libro por autor: " + gestor.buscarLibro(sc.nextLine()) + "\n");
-        /*Buscar libros por autor */
-        System.out.println("Libros de (el autor que sea):\n" + GestorLibro.toString(gestor.buscarporAutor("autor que buscar")) + "\n");
-        /*Buscar libros por categoría */
-        System.out.println("Libros de (categoria que sea):" + Arrays.toString(gestor.buscarporCategoria(Categorialibro."categoria")) + "\n");
-        /*Eliminar un libro por autor*/
-        gestor.eliminarLibro("el libro a eliminar");
-        System.out.println("Libros después de eliminar:\n" + GestorLibro.toString(gestor.buscarporAutor("autor que buscar")) + "\n");
-        /*Todas los libros para ver los cambios */
-        System.out.println("Todos los libros:\n" + gestor.toString() + "\n");
-
-
-        
+     
     Scanner sc = new Scanner(System.in);
     public void buscarLibroporTitulo() {
         System.out.println("Introduce el título del libro a buscar:");
