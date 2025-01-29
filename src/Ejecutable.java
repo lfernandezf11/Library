@@ -142,7 +142,8 @@ public static void menuAdmin(){
         }
     
     }while(filtrolibro);
-
+    public static void menuCategoriaLibro(){
+        boolean filtrocategoria = true;
     do{
             System.out.println(".____________________________________________________.");
             System.out.println("|                 CATEGORÍA DE LIBROS                |"); //User.getNombre().
@@ -165,8 +166,8 @@ public static void menuAdmin(){
             System.out.println("|---------- Pulsa 0 para salir del programa ---------|");  
             System.out.println("|____________________________________________________|");
         }
-     }while(filtrolibro);
-    }
+     }while(filtrocategoria);
+
     
     public static void buscarLibroporTitulo() {
         GestorLibro gestor = new GestorLibro();
@@ -415,6 +416,7 @@ public static void menuAdmin(){
     gestor.addUser(new User(numID++, "Fernando", "Lopez", "ferLo", "ferPass", false, "fernando.lopez@gmail.com"));
     gestor.addUser(new User(numID++, "Patricia", "Martinez", "patM", "patricia123", true, "patricia.mtz@mail.com"));
     }
+}
     
 
 
