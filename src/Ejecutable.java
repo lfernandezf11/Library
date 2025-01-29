@@ -151,38 +151,96 @@ public class Ejecutable {
             System.out.println("|      e) Actualización de datos de usuario.         |");
             System.out.println("|      f) Borrado de usuario.                        |");
             System.out.println("|                                                    |");
-            System.out.println("|---------- Pulsa 0 para salir del programa ---------|");  
-            System.out.println("|------ Pulsa 1 para volver al menú principal -------|");  
+            System.out.println("|------------ Pulsa 0 para volver al menú -----------|");  
             System.out.println("|____________________________________________________|"); 
 
             int opcion = Integer.parseInt(sc.nextLine());
 
             //Switch para elección de opciones, búsqueda de información de usuarios por filtro, para administradores.
-                /*switch (opcion) {
-                    case 'a' -> sout + busquedaporapellido.
-                    case 'b' -> sout + busquedaporalias.
-                    case 'c' -> sout + busquedapormail.
-                    case 'd' -> sout + uptadeuser.
-                    case 'e' -> sout + update user.
-                    case 'f' -> sout + delete user.
-                    case '0' -> System.out.println("Saliendo del programa...");
-                                filtroUser = false;    
-                    case '1' -> if admin menuadmin else menunoadmin           CÓMO LO HAGO????*/ 
+                switch (opcion) {
+                    case 'a': buscaApellido();
+                        break;
+                    case 'b': buscaAlias();
+                        break;
+                    case 'c': buscaMail();
+                        break;
+                    case 'd': buscaTipo();
+                        break;
+                    /*case 'e' -> sout + update user.*/
+                    case 'f': borraUsuario();
+                        break;
+                    case '0': System.out.println("Volviendo al menú...");
+                              filtroUser=false;    
+                        break;
+                    default: System.out.println("Valor introducido no válido. Prueba de nuevo.");
+                }
         }while(filtroUser);
     }
-
+//CASE a
     public static void buscaApellido(){
         System.out.println("Introduce el apellido del usuario: ");
         GestorUsers apellidos = new GestorUsers();
         User[] usuarios = apellidos.searchbyApellido(sc.nextLine());
         if(usuarios != null && usuarios.length > 0){ //Comprobación extra: el array no es nulo y tiene al menos un elemento.
-            System.out.println(GestorUsers.toString(usuarios));
+            System.out.println("Usuarios encontrados: \n" + GestorUsers.toString(usuarios));
         }else{
             System.out.println("No hay coincidencias para esta búsqueda.");
         }
     }
+//CASE b
+    public static void buscaAlias(){
+        System.out.println("Introduce el nombre de usuario del usuario: ");
+        GestorUsers alias = new GestorUsers();
+        User encontrado = alias.searchbyAlias(sc.nextLine());
+        if(encontrado != null){ 
+            System.out.println("Usuario encontrado: \n" + encontrado.toString());
+        }else{
+            System.out.println("No hay coincidencias para esta búsqueda.");
+        }
+    }
+//CASE c
+    public static void buscaMail(){
+        System.out.println("Introduce la dirección email del usuario: ");
+        GestorUsers mail = new GestorUsers();
+        User coincide = mail.searchbyEmail(sc.nextLine());
+        if(coincide != null){ 
+            System.out.println("Usuario encontrado: \n" + coincide.toString());
+        }else{
+            System.out.println("No hay coincidencias para esta búsqueda.");
+        }
+    }
+//CASE d
+    public static void buscaTipo(){
+        System.out.println("Introduce 'admin' para listar a los administradores, 'no admin' para listar el resto de usuarios:");
+        GestorUsers type = new GestorUsers();
+        User [] arraytype;
+        String entrada = sc.nextLine();
+        while (entrada != "admin" && entrada != "no admin"){
+            System.out.println("Input no válido. Escribe 'admin' o 'no admin' (sin comillas):");
+            entrada=sc.nextLine();
+        }
+        if(entrada == "admin"){
+            arraytype = type.searchbyAdminNoAdmin(true);
+            System.out.println("Listado de administradores: \n" + GestorUsers.toString(arraytype));
+        }else{
+            arraytype = type.searchbyAdminNoAdmin(false);
+            System.out.println("Listado de usuarios no administradores: \n" + GestorUsers.toString(arraytype));
+        } 
+    }
+//CASE e IMPLEMENTAR!!!!
+    public static void 
 
-
+//CASE f
+    public static void borraUsuario(){
+        System.out.println("Introduce el nombre de usuario del usuario que deseas eliminar:");
+        GestorUsers borrado = new GestorUsers();
+        String aliasinput = sc.nextLine();
+        if (borrado.deleteUser(aliasinput) == true){
+            System.out.println("El usuario ha sido eliminado con éxito.");
+        }else{
+            System.out.println("Usuario no encontrado. No se ha podido realizar el borrado.");
+        }
+    }
    
        
     public void repositoriolibro(){ 
@@ -208,7 +266,7 @@ public class Ejecutable {
     public void buscarLibroporTitulo() {
         GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce el título del libro a buscar:");
-        Libro resultado=gestor.buscarLibro(titulo);
+        Libro resultado=gestor.buscarLibro(sc.nextLine());
         if (resultado != null) {
             System.out.println("Libro encontrado:" + resultado);
         } else {
