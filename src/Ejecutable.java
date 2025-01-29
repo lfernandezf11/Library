@@ -10,8 +10,11 @@ public class Ejecutable {
 */
 
 
+
+}
 /*Menú para usuarios Administradores */  
-        boolean admin = true;    
+public static void menuAdmin(){
+    boolean admin = true;    
 
         do{
             System.out.println(".____________________________________________________.");
@@ -61,11 +64,14 @@ public class Ejecutable {
                     case 12 -> usuarioconmáspréstamos.
                     case 0 -> System.out.println("Saliendo del programa...");
                               admin = false;
-                    default: -> System.out.println("Valor introducido no válido. Prueba de nuevo.");
-        }*/
+                    default: -> System.out.println("Valor introducido no válido. Prueba de nuevo.");*/
+        }
         
         }while(admin);
     }
+    
+
+    
 
 /*Menú para usuarios no administradores*/  
     public void menuNoAdmin(){
