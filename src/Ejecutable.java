@@ -139,11 +139,36 @@ public static void menuAdmin(){
                     break;
                     case '0' : System.out.println("Saliendo del programa...");
                                 filtrolibro = false;                
-        }while(filtrolibro);
+        }
     
+    }while(filtrolibro);
+
+    do{
+            System.out.println(".____________________________________________________.");
+            System.out.println("|                 CATEGORÍA DE LIBROS                |"); //User.getNombre().
+            System.out.println("|------ ¿Qué categoría de libro quieres añadir? -----|");
+            System.out.println("|                                                    |");
+            System.out.println("|      1) Juvenil                                    |");
+            System.out.println("|      2) CienciasFicción                            |");
+            System.out.println("|      3) Fantasía                                   |");
+            System.out.println("|      4) Ensayo                                     |"); 
+            System.out.println("|      5) Biografía                                  |");
+            System.out.println("|      6) NovelaGráfica                              |");
+            System.out.println("|      7) Thriller                                   |");
+            System.out.println("|      8) Poesía                                     |");
+            System.out.println("|      1) Infantil                                   |");
+            System.out.println("|      2) Clásico                                    |");
+            System.out.println("|      3) Historia                                   |");
+            System.out.println("|      4) Misterio                                   |"); 
+            System.out.println("|      5) Romance                                    |");
+            System.out.println("|                                                    |");
+            System.out.println("|---------- Pulsa 0 para salir del programa ---------|");  
+            System.out.println("|____________________________________________________|");
+        }
+     }while(filtrolibro);
     }
-}
-    public void buscarLibroporTitulo() {
+    
+    public static void buscarLibroporTitulo() {
         GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce el título del libro a buscar:");
         Libro resultado=gestor.buscarLibro(sc.nextLine());
@@ -155,7 +180,7 @@ public static void menuAdmin(){
     }
     
 
-    public void buscarLibroporAutor() {
+    public static void buscarLibroporAutor() {
         GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce el autor del libro a buscar:");
         String autor = sc.nextLine();
@@ -169,11 +194,11 @@ public static void menuAdmin(){
         }
     }
 /*No se como hacerla porque la salida que espera es un enum */
-    public void buscarLibroporCategoria() {
+    public static void buscarLibroporCategoria() {
         GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce la categoría del libro a buscar:");
         String categoria = sc.nextLine();
-        Libro[]resultado=gestor.buscarporCategoria(categoria);
+        Libro[]resultado=gestor.buscarporCategoria();
     }
 
     public void eliminarLibroporAutor() {
@@ -390,7 +415,7 @@ public static void menuAdmin(){
     gestor.addUser(new User(numID++, "Fernando", "Lopez", "ferLo", "ferPass", false, "fernando.lopez@gmail.com"));
     gestor.addUser(new User(numID++, "Patricia", "Martinez", "patM", "patricia123", true, "patricia.mtz@mail.com"));
     }
-    }
+    
 
 
     
