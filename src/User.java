@@ -33,14 +33,27 @@ public class User {
     private LocalDate fechaAlta;
     private String email;
     
-
+    /**
+     * Constructor por defecto para llamarlo sin declarar parámetros en el main, para el método addUser (GestorUsers class)
+     * y la función actualizaUsuario, (Ejecutable Main) que llama al método mencionado.
+     */
+    public User() {
+        this.userID=numID;
+        this.nombre="";
+        this.apellido="";
+        this.alias="";
+        this.password="";
+        this.esAdmin=false;
+        this.fechaAlta=LocalDate.now();
+        this.email="";
+        numID++;
+     }
     /**
      * Constructor para generar un objeto Usuario parametrizado. Lo utilizaremos para crear el repositorio inicial de forma más rápida.
      * En el main, no obstante, construiremos objetos mediante SETTERS, a través de los cuales se validan los inputs (podría hacerse aquí tb). 
      * La fechaAlta se asigna automáticamente con la clase LocalDate.
      */
 
-    //Implementar un modo de conservar la fecha de alta y el IDUser en el método update de GestorUser!!!
     public User(int userID, String nombre, String apellido, String alias, String password, Boolean esAdmin, LocalDate fechaAlta, String email) {
        this.userID=numID;
        this.nombre=nombre;

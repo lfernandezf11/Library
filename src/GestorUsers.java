@@ -92,7 +92,7 @@ public class GestorUsers {
      * @param actualizado objeto con info actualizada.
      * @return estado de la actualización. False si no se encuentra el alias coincidente.
     */
-    public boolean updateUser(User actualizado){
+    public Boolean updateUser(User actualizado){
         for(int i=0; i<filled; i++){
             if(usuarios[i].getAlias().equals(actualizado.getAlias())){}
                 usuarios[i].setNombre(actualizado.getNombre());

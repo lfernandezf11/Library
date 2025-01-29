@@ -29,7 +29,7 @@ public class Libro {
     public void setfechapubli(int fechapubli){
         this.fechapubli=fechapubli;
     }
-    public boolean setdisponible(){
+    public void setdisponible(){
         this.disponible=disponible;
     }
     public String gettitulo(){
