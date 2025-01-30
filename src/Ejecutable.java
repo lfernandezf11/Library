@@ -105,8 +105,8 @@ public static void menuAdmin(){
                         break;
                     case 10: muestraPrestamosAct();
                         break;
-                    /*case 11 -> másprestados;
-                    case 12 -> usuarioconmáspréstamos.*/
+                    /*case 11 -> másprestados;*/
+                    case 12: 
                     case 0: System.out.println("Saliendo del programa...");
                             admin = false;
                         break;
