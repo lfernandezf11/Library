@@ -2,76 +2,71 @@
  * @author: Lucía Fernández Florencio
  */
 
-/** En lugar de importar java.util.Date, utilizamos la API java.time, que maneja mejor y de forma más intuitiva datos de hora y fecha.
+/** VER IMPLEMENTACIÓN FUTURA. 
+ * En lugar de importar java.util.Date, utilizamos la API java.time, que maneja mejor y de forma más intuitiva datos de hora y fecha.
  * Sus clases son inmutables, se establecen con la creación del objeto y no cambian.
  * .LocalDate -> Fecha.
  * .LocalTime -> Hora.
  * .LocalDateTime -> Fecha y Hora.
  * */
- import java.time.LocalDate; 
+ 
 
 /**
  * Atributos de usuario:
- * @param userID    identificador numérico único, Primary Key.
  * @param nombre    nombre de pila
  * @param apellido  primer apellido
  * @param alias     nombre de usuario. Como norma, se genera con la primera sílaba del nombre, la primera del apellido y el ID.
  * @param password  contraseña
  * @param esAdmin   indica si el usuario es administrador o no
- * @param fechaAlta fecha de inscripción en el sistema
+ * @param anioAlta  año de inscripción en el sistema
  * @param email     email de contacto
+ * @param prestamosactivos  préstamos en activo del usuario
  * */
 public class User {
-    private final int userID; /*Para asignar y autoincrementar el userID en la creación del objeto, implementamos un contador numID que irá sumando uno
-                                en cada creación. Hemos de asegurar que userID y fechaAlta se conservan en el updateUser de la clase GestorUsers.*/ 
-    private int numID = 1;
     private String nombre;
     private String apellido;
     private String alias; 
     private String password;
     private Boolean esAdmin;
-    private LocalDate fechaAlta;
+    private int anioAlta;
     private String email;
+    private int prestamosactivos;
     
     /**
      * Constructor por defecto para llamarlo sin declarar parámetros en el main, para el método addUser (GestorUsers class)
-     * y la función actualizaUsuario, (Ejecutable Main) que llama al método mencionado.
+     * y la función actualizaUsuario (Ejecutable Main) que llama al método mencionado.
      */
     public User() {
-        this.userID=numID;
         this.nombre="";
         this.apellido="";
         this.alias="";
         this.password="";
         this.esAdmin=false;
-        this.fechaAlta=LocalDate.now();
+        this.anioAlta=2000;
         this.email="";
-        numID++;
-     }
+        this.prestamosactivos=0;
+    }
     /**
      * Constructor para generar un objeto Usuario parametrizado. Lo utilizaremos para crear el repositorio inicial de forma más rápida.
      * En el main, no obstante, construiremos objetos mediante SETTERS, a través de los cuales se validan los inputs (podría hacerse aquí tb). 
-     * La fechaAlta se asigna automáticamente con la clase LocalDate.
      */
 
-    public User(int numID, String nombre, String apellido, String alias, String password, Boolean esAdmin, LocalDate fechaAlta, String email) {
-       this();
+    public User(String nombre, String apellido, String alias, String password, Boolean esAdmin, int anioAlta, String email, int prestamosactivos) {
        this.nombre=nombre;
        this.apellido=apellido;
        this.alias=alias;
        this.password=password;
        this.esAdmin=esAdmin;
+       this.anioAlta=anioAlta;
        this.email=email;
-       numID++;
+       this.prestamosactivos=prestamosactivos;
     }
 
     /**
      * Getters para cada atributo. 
      * @return el valor del atributo al que se refiere. 
      */
-    public int getUserID() {
-        return this.userID;
-    }
+    
     public String getNombre(){
         return this.nombre;
     }
@@ -87,15 +82,18 @@ public class User {
     public Boolean getEsAdmin(){
         return this.esAdmin;
     }
-    public LocalDate getFechaAlta(){
-        return this.fechaAlta;
+    public int getAnioAlta(){
+        return this.anioAlta;
     }
     public String getEmail(){
         return this.email;
     }
+    public int getPrestamosActivos(){
+        return this.prestamosactivos;
+    }
     
     /**
-     * Setters para cada atributo, excepto para UserID y fechaAlta, que se mantienen desde la creación.
+     * Setters para cada atributo, excepto para anioAlta, que se mantiene desde la creación.
      * Establece el valor para cada atributo del objeto recibido por parámetro. Validamos la entrada de datos y devolvemos un boolean
      * para saber si la operación ha tenido éxito. En caso contrario, podremos establecer un bucle que pida el valor de nuevo.
      */
@@ -140,6 +138,17 @@ public class User {
             return false;
         }
     }
+    /* setAnioAlta acepta valores de año limitados, con 4 dígitos.*/
+    public Boolean setAnioAlta(int anioAlta){
+        if(anioAlta >= 1900 && anioAlta <2026){
+            this.anioAlta=anioAlta;
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+    
     public void setEsAdmin(Boolean esAdmin){ //No necesita retorno, por defecto el valor es true.
         this.esAdmin=esAdmin;
     }
@@ -157,20 +166,30 @@ public class User {
             return false;
         }
     }
-
+    public Boolean setPrestamosActivos(int prestamosactivos){
+        if(prestamosactivos>=0){
+            return true;
+        }else{
+            return false;
+        }
+    }
     /**
      * Método de salida de información para cada objeto.
      * @override sobreescribe el método toString() preestablecido para Java.
      */
     @Override
     public String toString(){
-        return "[Usuario " + getUserID() + ": " +
+        return "[Usuario " +
                 getNombre() + " " + getApellido() + 
                 ". Nombre de usuario: " + getAlias() +
                 "; contraseña: " + getPassword() +
-                "; fecha de alta en el sistema: " + getFechaAlta().toString() +
+                "; año de alta en el sistema: " + getAnioAlta() +
                 "; email de contacto: " + getEmail() +
-                ". ¿Es administrador? " + getEsAdmin() + "]";
+                ". ¿Es administrador? " + getEsAdmin() +
+                ". Préstamos activos:" + getPrestamosActivos() + "]";
     }
 }
+
+
+
 
