@@ -765,27 +765,6 @@ public static void menuAdmin(){
     gestor.agregarLibro(new Libro("Fahrenheit 451", "Ray Bradbury", Categorialibro.CIENCIASFICCION, 15, 1953, false, 0));
     gestor.agregarLibro(new Libro("La espada de la verdad", "Terry Goodkind", Categorialibro.FANTASIA, 16, 1994, false, 0));
     }
-    public void repositoriouser(){
-    GestorUsers gestor = new GestorUsers();
-    gestor.addUser(new User(1, "Carlos", "Gomez", "carlitos", "pass123", true, "carlos@gmail.com"));
-    gestor.addUser(new User(numID++, "Maria", "Lopez", "mari_lo", "mypass", false, "maria@hotmail.com"));
-    gestor.addUser(new User(numID++, "Juan", "Perez", "juancho", "securePass", true, "juanp@mail.com"));
-    gestor.addUser(new User(numID++, "Lucia", "Fernandez", "lucy", "lucyPass", false, "luciaf@yahoo.com"));
-    gestor.addUser(new User(numID++, "Miguel", "Gomez", "mike", "mikepass", false, "miguel_gomez@gmail.com"));
-    gestor.addUser(new User(numID++, "Elena", "Rodriguez", "ele_rod", "elena123", true, "elena.rod@mail.com"));
-    gestor.addUser(new User(numID++, "Andres", "Lopez", "andyL", "andy456", false, "andres.lopez@yahoo.com"));
-    gestor.addUser(new User(numID++, "Sofia", "Martinez", "sofmart", "sofiaPass", true, "sofia.mtz@gmail.com"));
-    gestor.addUser(new User(numID++, "Raul", "Fernandez", "raulito", "raulpass", false, "raul_fernandez@gmail.com"));
-    gestor.addUser(new User(numID++, "Isabel", "Perez", "isaP", "isabel789", false, "isabel.perez@mail.com"));
-    gestor.addUser(new User(numID++, "Pedro", "Gutierrez", "pedrito", "pedroPass", true, "pedro.gtz@gmail.com"));
-    gestor.addUser(new User(numID++, "Ana", "Ramirez", "anaR", "anaPass", false, "ana.ramirez@mail.com"));
-    gestor.addUser(new User(numID++, "Luis", "Torres", "luisT", "luisPass", true, "luis.torres@gmail.com"));
-    gestor.addUser(new User(numID++, "Mariana", "Gomez", "marianG", "marianaPass", false, "mariana.gomez@yahoo.com"));
-    gestor.addUser(new User(numID++, "Fernando", "Lopez", "ferLo", "ferPass", false, "fernando.lopez@gmail.com"));
-    gestor.addUser(new User(numID++, "Patricia", "Martinez", "patM", "patricia123", true, "patricia.mtz@mail.com"));
-    gestor.addUser(new User());
-
-    }
     
 
     }
