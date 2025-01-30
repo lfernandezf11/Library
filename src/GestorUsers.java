@@ -1,5 +1,6 @@
 /**
  * @author: Lucía Fernández Florencio
+ * @author: María Teresa Calvo Peña
  */
 import java.util.Arrays;
 

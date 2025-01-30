@@ -1,3 +1,7 @@
+/**
+ * @author: Lucía Fernández Florencio
+ * @author: María Teresa Calvo Peña
+ */
 import java.util.Scanner;
 import java.util.Arrays;
 
@@ -167,12 +171,9 @@ public static void menuAdmin(){
                     categoriaEnum = Categorialibro.ROMANCE;
                 }
 
-                // Si la categoría es válida, creamos el libro
+                // Si la categoría es válida, creamos el libro y lo agregamos.
                 if (categoriaEnum != null) {
-                    // Crear el libro con los datos ingresados
                     Libro libro = new Libro(titulo, autor, categoriaEnum, idLibro, fechapubli, disponible, vecesPrestado);
-                    
-                    // Agregar el libro al GestorLibro
                     gestor.agregarLibro(libro);
                 } else {
                     System.out.println("Categoría no válida. El libro no puede ser agregado.");
@@ -745,45 +746,29 @@ public static void menuAdmin(){
         usuario.setPrestamosActivos(usuario.getPrestamosActivos() - 1);
 
     System.out.println("Devolución realizada con éxito. Libro: " + libro.gettitulo());
-}
-    public void repositoriolibro(){ 
-        GestorLibro gestor = new GestorLibro();
-    gestor.agregarLibro(new Libro("El niño con el pijama de rayas", "John Boyne", Categorialibro.JUVENIL, 1, 2006, true,0));
-    gestor.agregarLibro(new Libro("Dune", "Frank Herbert", Categorialibro.CIENCIASFICCION, 2, 1965, true));
-    gestor.agregarLibro(new Libro("El Señor de los Anillos", "J.R.R. Tolkien", Categorialibro.FANTASIA, 3, 1954, false));
-    gestor.agregarLibro(new Libro("Meditaciones", "Marco Aurelio", Categorialibro.ENSAYO, 4, 1800, true));
-    gestor.agregarLibro(new Libro("El diario de Ana Frank", "Ana Frank", Categorialibro.BIOGRAFIA, 5, 1947, true));
-    gestor.agregarLibro(new Libro("Maus", "Art Spiegelman", Categorialibro.NOVELAGRAFICA, 6, 1980, true));
-    gestor.agregarLibro(new Libro("La chica del tren", "Paula Hawkins", Categorialibro.THRILLER, 7, 2015, true));
-    gestor.agregarLibro(new Libro("Cien sonetos de amor", "Pablo Neruda", Categorialibro.POESIA, 8, 1959, true));
-    gestor.agregarLibro(new Libro("Harry Potter y la piedra filosofal", "J.K. Rowling", Categorialibro.INFANTIL, 9, 1997, true));
-    gestor.agregarLibro(new Libro("Don Quijote de la Mancha", "Miguel de Cervantes", Categorialibro.CLASICO, 10, 1605, false));
-    gestor.agregarLibro(new Libro("Historia de la Segunda Guerra Mundial", "Winston Churchill", Categorialibro.HISTORIA, 11, 1948, false));
-    gestor.agregarLibro(new Libro("El código Da Vinci", "Dan Brown", Categorialibro.MISTERIO, 12, 2003, false));
-    gestor.agregarLibro(new Libro("Orgullo y prejuicio", "Jane Austen", Categorialibro.ROMANCE, 13, 1813, true));
-    gestor.agregarLibro(new Libro("El último deseo", "Andrzej Sapkowski", Categorialibro.JUVENIL, 14, 1993, true));
-    gestor.agregarLibro(new Libro("Fahrenheit 451", "Ray Bradbury", Categorialibro.CIENCIASFICCION, 15, 1953, false));
-    gestor.agregarLibro(new Libro("La espada de la verdad", "Terry Goodkind", Categorialibro.FANTASIA, 16, 1994, false));
     }
-    public void repositoriouser(){
-    GestorUsers gestor = new GestorUsers();
-    gestor.addUser(new User(1, "Carlos", "Gomez", "carlitos", "pass123", true, "carlos@gmail.com"));
-    gestor.addUser(new User(numID++, "Maria", "Lopez", "mari_lo", "mypass", false, "maria@hotmail.com"));
-    gestor.addUser(new User(numID++, "Juan", "Perez", "juancho", "securePass", true, "juanp@mail.com"));
-    gestor.addUser(new User(numID++, "Lucia", "Fernandez", "lucy", "lucyPass", false, "luciaf@yahoo.com"));
-    gestor.addUser(new User(numID++, "Miguel", "Gomez", "mike", "mikepass", false, "miguel_gomez@gmail.com"));
-    gestor.addUser(new User(numID++, "Elena", "Rodriguez", "ele_rod", "elena123", true, "elena.rod@mail.com"));
-    gestor.addUser(new User(numID++, "Andres", "Lopez", "andyL", "andy456", false, "andres.lopez@yahoo.com"));
-    gestor.addUser(new User(numID++, "Sofia", "Martinez", "sofmart", "sofiaPass", true, "sofia.mtz@gmail.com"));
-    gestor.addUser(new User(numID++, "Raul", "Fernandez", "raulito", "raulpass", false, "raul_fernandez@gmail.com"));
-    gestor.addUser(new User(numID++, "Isabel", "Perez", "isaP", "isabel789", false, "isabel.perez@mail.com"));
-    gestor.addUser(new User(numID++, "Pedro", "Gutierrez", "pedrito", "pedroPass", true, "pedro.gtz@gmail.com"));
-    gestor.addUser(new User(numID++, "Ana", "Ramirez", "anaR", "anaPass", false, "ana.ramirez@mail.com"));
-    gestor.addUser(new User(numID++, "Luis", "Torres", "luisT", "luisPass", true, "luis.torres@gmail.com"));
-    gestor.addUser(new User(numID++, "Mariana", "Gomez", "marianG", "marianaPass", false, "mariana.gomez@yahoo.com"));
-    gestor.addUser(new User(numID++, "Fernando", "Lopez", "ferLo", "ferPass", false, "fernando.lopez@gmail.com"));
-    gestor.addUser(new User(numID++, "Patricia", "Martinez", "patM", "patricia123", true, "patricia.mtz@mail.com"));
-    gestor.addUser(new User());
+
+    
+//OBJETOS DE PRUEBA USER
+    public static void repositoriouser(){
+        GestorUsers gestor = new GestorUsers();
+
+        gestor.addUser(new User("Juan", "Pérez", "juanp", "pass123", true, 2019, "juan.perez@gmail.com", 2));
+        gestor.addUser(new User("María", "González", "mariag", "securepass", false, 2021, "maria.gonzalez@hotmail.com", 1));
+        gestor.addUser(new User("Carlos", "López", "carlosl", "carlospass", true, 2020, "carlos.lopez@outlook.es", 0));
+        gestor.addUser(new User("Ana María", "Pérez", "anap189", "ana1234", false, 2022, "ana.perez@yahoo.com", 3));
+        gestor.addUser(new User("Luis", "Martínez", "luism5", "luispass", true, 2023, "luis.martinez@gmail.com", 1));
+        gestor.addUser(new User("Elena", "González", "elenag", "elenapass", false, 2021, "elena.gonzalez@hotmail.com", 2));
+        gestor.addUser(new User("Sofía", "Pérez", "sofiap", "sofia123", true, 2020, "sofia.perez@outlook.es", 0));
+        gestor.addUser(new User("Diego", "López", "diego2l", "diegopass", false, 2025, "diego.lopez@yahoo.com", 1));
+        gestor.addUser(new User("Laura", "Martínez", "lauramm", "laurapass", true, 2022, "laura.martinez@gmail.com", 2));
+        gestor.addUser(new User("Pedro", "García", "pedrog7", "pedropass", false, 2021, "pedro.garcia@hotmail.com", 0));
+        gestor.addUser(new User("Clara", "García", "clarag19", "clarapass", false, 2025, "clara.garcia@outlook.es", 1));
+        gestor.addUser(new User("Jorge", "Pérez", "jorgep7", "jorgepass", true, 2019, "jorge.perez@yahoo.com", 4));
+        gestor.addUser(new User("Lucía", "González", "lucia12g", "luciapass", false, 2023, "lucia.gonzalez@gmail.com", 0));
+        gestor.addUser(new User("Raúl", "López", "raulop", "raulpass", true, 2022, "raul.lopez@hotmail.com", 1));
+        gestor.addUser(new User("Marta", "Martínez", "martam21", "martapass", false, 2021, "marta.martinez@outlook.es", 2));
+  
 
     }
     
