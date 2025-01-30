@@ -54,14 +54,13 @@ public class User {
      * La fechaAlta se asigna automáticamente con la clase LocalDate.
      */
 
-    public User(int userID, String nombre, String apellido, String alias, String password, Boolean esAdmin, LocalDate fechaAlta, String email) {
-       this.userID=numID;
+    public User(int numID, String nombre, String apellido, String alias, String password, Boolean esAdmin, LocalDate fechaAlta, String email) {
+       this();
        this.nombre=nombre;
        this.apellido=apellido;
        this.alias=alias;
        this.password=password;
        this.esAdmin=esAdmin;
-       this.fechaAlta=LocalDate.now();
        this.email=email;
        numID++;
     }
