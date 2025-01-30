@@ -5,14 +5,16 @@ public class Libro {
     private int idLibro;
     private int fechapubli;
     private boolean isdisponible;
+    private int vecesPrestado;
 
-    public Libro(String titulo, String autor, Categorialibro categoria, int idLibro, int fechapubli, boolean isdisponible){
+    public Libro(String titulo, String autor, Categorialibro categoria, int idLibro, int fechapubli, boolean isdisponible, int vecesPrestado){
         this.titulo=titulo;
         this.autor=autor;
         this.categoria=categoria;
         this.idLibro = idLibro;
         this.fechapubli=fechapubli;
         this.isdisponible = isdisponible;
+        this.vecesPrestado = vecesPrestado;
     }
     public void settitulo(String titulo){
         this.titulo=titulo;
@@ -32,6 +34,9 @@ public class Libro {
     public void setdisponible(boolean isdisponible){
         this.isdisponible=isdisponible;
     }
+    public void setVecesPrestado(int vecesPrestado){
+        this.vecesPrestado=vecesPrestado;
+    }
     public String gettitulo(){
         return this.titulo;
     }
@@ -50,14 +55,17 @@ public class Libro {
     public boolean getisdisponible(){
         return this.isdisponible;
     }
+    public int getVecesPrestado(){
+        return this.vecesPrestado;
+    }
     public String toString(){
         return "{" +
                 " titulo='" + gettitulo() + "'" +
                 ", autor='" + getautor() + "'" +
                 ", categoria='" + getCategorialibro() + "'" +
                 ", año publicación=" + getfechapubli() + "'" +
-                ", disponible=" + getisdisponible() +
-               "}";
+                ", disponible=" + getisdisponible() + "'" +
+               ", veces prestado: " + getVecesPrestado() + "}";
     }
 }
 

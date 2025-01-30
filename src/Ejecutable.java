@@ -93,12 +93,15 @@ public static void menuAdmin(){
                         break;
                     case 6: menuBusquedaUsuario();
                         break;
-                //PENDIENTE DE IMPLEMENTACIÓN EN CLASES
-                    /*case 7 -> préstamo;
-                    case 8 -> devolver;
-                    case 9 -> préstamostotales;
-                    case 10 -> préstamosactivos;
-                    case 11 -> másprestados;
+                    case 7: gestionaPrestamo();
+                        break;
+                    case 8: devuelveLibro();
+                        break;
+                    case 9: muestraPrestamosTot();
+                        break;
+                    case 10: muestraPrestamosAct();
+                        break;
+                    /*case 11 -> másprestados;
                     case 12 -> usuarioconmáspréstamos.*/
                     case 0: System.out.println("Saliendo del programa...");
                             admin = false;
@@ -128,11 +131,14 @@ public static void menuAdmin(){
                 
                 System.out.println("Introduce la categoría del libro (usa la opción correspondiente):");
                 String categoria = sc.nextLine();
+
+                System.out.println("Introduce el número de veces que el libro ha sido prestado: ");
+                int vecesPrestado = Integer.parseInt(sc.nextLine());
                 
-                // Aquí deberías manejar la conversión de la categoría de texto a tu enum Categorialibro
+             
                 Categorialibro categoriaEnum = null;
 
-                // Comprobamos la categoría ingresada por el administrador
+                // Comprobamos la categoría ingresada 
                 if (categoria.equals("JUVENIL")) {
                     categoriaEnum = Categorialibro.JUVENIL;
                 } else if (categoria.equals("CIENCIASFICCION")) {
@@ -164,8 +170,8 @@ public static void menuAdmin(){
                 // Si la categoría es válida, creamos el libro
                 if (categoriaEnum != null) {
                     // Crear el libro con los datos ingresados
-                    Libro libro = new Libro(titulo, autor, categoriaEnum, idLibro, fechapubli, disponible);
-
+                    Libro libro = new Libro(titulo, autor, categoriaEnum, idLibro, fechapubli, disponible, vecesPrestado);
+                    
                     // Agregar el libro al GestorLibro
                     gestor.agregarLibro(libro);
                 } else {
@@ -179,7 +185,7 @@ public static void menuAdmin(){
         if (librosDisponibles.length == 0) {
             System.out.println("No hay libros disponibles.");
         } else {
-            System.out.println("Libros disponibles:");
+            System.out.println("Libros disponibles:" + librosDisponibles.toString());
             for (Libro libro : librosDisponibles) {
                 System.out.println(libro);  // Aquí muestra el libro con su método toString()
             }
@@ -187,10 +193,10 @@ public static void menuAdmin(){
     }
     public static void eliminarLibro() {
         System.out.println("Introduce el título del libro a eliminar:");
-        String titulo = sc.nextLine(); // Solicitar al usuario que ingrese el título del libro
+        String titulo = sc.nextLine(); 
         GestorLibro gestor = new GestorLibro();
         
-        boolean eliminado = gestor.eliminarLibro(titulo); // Llamamos al método eliminarLibro
+        boolean eliminado = gestor.eliminarLibro(titulo); 
     
         if (eliminado) {
             System.out.println("El libro '" + titulo + "' ha sido eliminado.");
@@ -226,13 +232,12 @@ public static void menuAdmin(){
                         break;
                     case 2: mostrarLibrosDisponibles();
                         break;
-                //PENDIENTE DE IMPLEMENTACIÓN EN CLASES
-                    /*case 3 -> préstamo;
-                    case 4 -> devolver;*/
+                    case 3: gestionaPrestamo();
+                        break;
+                    case 4: devuelveLibro();
                     case 0: System.out.println("Saliendo del programa...");
                             noadmin = false;
-                        break;
-                            
+                        break;  
                     default: System.out.println("Valor introducido no válido. Prueba de nuevo.");
                         break;
         }
@@ -267,8 +272,8 @@ public static void menuAdmin(){
                     break;
                     case 'c': buscarLibroporCategoria();
                     break;
-                    case '0' : System.out.println("Saliendo del programa...");
-                                filtrolibro = false;
+                    case '0': System.out.println("Saliendo del programa...");
+                              filtrolibro = false;
                     break;
                     default: System.out.println("Opción no válida. Inténtalo de nuevo.");
                     break;
@@ -615,7 +620,7 @@ public static void menuAdmin(){
         }
     }
 
-//ADMIN ADDUSER
+//AÑADIR USUARIO ADDUSER (ADMINISTRADORES)
     public static void agregaUsuario(){
         System.out.println("Ingresa los datos del nuevo usuario:");
         GestorUsers altaUsuario = new GestorUsers();
@@ -673,11 +678,77 @@ public static void menuAdmin(){
             altaUsuario.addUser(nuevo);
             System.out.println("Usuario registrado.");
     }
-   
-       
+//Mostrar préstamos activos (ADMIN)
+    public static void muestraPrestamosAct(){
+        GestorLibro prestado = new GestorLibro();
+        Libro [] prestadoAct = prestado.getLibrosPrestados();
+        if (prestadoAct.length == 0) {
+            System.out.println("No hay préstamos activos.");
+        } else {
+            System.out.println("Libros prestados actualmente: \n" + prestadoAct.toString());
+        }
+    }
+//Mostrar préstamos totales (ADMIN)
+    public static void muestraPrestamosTot(){
+        GestorLibro totalPrestamos = new GestorLibro();
+        int total = totalPrestamos.getTotalPrestamos();
+        System.out.println("El número total de préstamos es " + total);
+    }
+//Solicitar préstamo de libro (TODOS)
+    public static void gestionaPrestamo() {
+        GestorLibro gestorLibro = new GestorLibro();
+        GestorUsers gestorUsers = new GestorUsers();
+    
+        System.out.println("Introduce el título del libro cuyo préstamo solicitas:");
+        String titulo = sc.nextLine();
+        Libro libro = gestorLibro.buscarLibro(titulo);
+        if (libro == null || !libro.getisdisponible()) {
+            System.out.println("El libro no está disponible para préstamo.");
+        }
+    
+        System.out.println("Verifica la petición introduciendo tu alias:");
+        String alias = sc.nextLine();
+        User usuario = gestorUsers.searchbyAlias(alias);
+        if (usuario == null) {
+            System.out.println("Usuario no encontrado.");
+        }
+    
+        libro.setdisponible(false);
+        libro.setVecesPrestado(libro.getVecesPrestado() + 1);
+        usuario.setPrestamosActivos(usuario.getPrestamosActivos() + 1);
+    
+        System.out.println("Préstamo realizado con éxito. Libro: " + libro.gettitulo());
+    }
+
+
+//Solicitar devolución de libro (TODOS)
+    public static void devuelveLibro() {
+        GestorLibro gestorLibro = new GestorLibro();
+        GestorUsers gestorUsers = new GestorUsers();
+
+        System.out.println("Introduce el título del libro que deseas devolver:");
+        String titulo = sc.nextLine();
+        Libro libro = gestorLibro.buscarLibro(titulo);
+        if (libro == null || libro.getisdisponible()) {
+            System.out.println("El libro no está registrado como prestado.");
+        }
+
+        System.out.println("Verifica la devolución introduciendo tu alias:");
+        String alias = sc.nextLine();
+        User usuario = gestorUsers.searchbyAlias(alias);
+        if (usuario == null || usuario.getPrestamosActivos() <= 0) {
+            System.out.println("Usuario no encontrado o sin préstamos activos.");
+        }
+
+        libro.setdisponible(true);
+        libro.setVecesPrestado(libro.getVecesPrestado());
+        usuario.setPrestamosActivos(usuario.getPrestamosActivos() - 1);
+
+    System.out.println("Devolución realizada con éxito. Libro: " + libro.gettitulo());
+}
     public void repositoriolibro(){ 
         GestorLibro gestor = new GestorLibro();
-    gestor.agregarLibro(new Libro("El niño con el pijama de rayas", "John Boyne", Categorialibro.JUVENIL, 1, 2006, true));
+    gestor.agregarLibro(new Libro("El niño con el pijama de rayas", "John Boyne", Categorialibro.JUVENIL, 1, 2006, true,0));
     gestor.agregarLibro(new Libro("Dune", "Frank Herbert", Categorialibro.CIENCIASFICCION, 2, 1965, true));
     gestor.agregarLibro(new Libro("El Señor de los Anillos", "J.R.R. Tolkien", Categorialibro.FANTASIA, 3, 1954, false));
     gestor.agregarLibro(new Libro("Meditaciones", "Marco Aurelio", Categorialibro.ENSAYO, 4, 1800, true));
