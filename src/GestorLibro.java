@@ -142,8 +142,7 @@ public class GestorLibro {
             } else if (masPrestados[1] == null || libros[i].getVecesPrestado() > masPrestados[1].getVecesPrestado()) {
                 masPrestados[1] = libros[i];
             }
-            return masPrestados;
-        }
+        }return masPrestados;
     }
     
 
