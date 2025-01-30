@@ -1,3 +1,7 @@
+/**
+ * @author: Lucía Fernández Florencio
+ * @author: María Teresa Calvo Peña
+ */
 import java.util.Scanner;
 import java.util.Arrays;
 
@@ -167,12 +171,9 @@ public static void menuAdmin(){
                     categoriaEnum = Categorialibro.ROMANCE;
                 }
 
-                // Si la categoría es válida, creamos el libro
+                // Si la categoría es válida, creamos el libro y lo agregamos.
                 if (categoriaEnum != null) {
-                    // Crear el libro con los datos ingresados
                     Libro libro = new Libro(titulo, autor, categoriaEnum, idLibro, fechapubli, disponible, vecesPrestado);
-                    
-                    // Agregar el libro al GestorLibro
                     gestor.agregarLibro(libro);
                 } else {
                     System.out.println("Categoría no válida. El libro no puede ser agregado.");
@@ -764,6 +765,32 @@ public static void menuAdmin(){
     gestor.agregarLibro(new Libro("El último deseo", "Andrzej Sapkowski", Categorialibro.JUVENIL, 14, 1993, true, 8));
     gestor.agregarLibro(new Libro("Fahrenheit 451", "Ray Bradbury", Categorialibro.CIENCIASFICCION, 15, 1953, false, 0));
     gestor.agregarLibro(new Libro("La espada de la verdad", "Terry Goodkind", Categorialibro.FANTASIA, 16, 1994, false, 0));
+    }
+
+   
+
+    
+//OBJETOS DE PRUEBA USER
+    public static void repositoriouser(){
+        GestorUsers gestor = new GestorUsers();
+
+        gestor.addUser(new User("Juan", "Pérez", "juanp", "pass123", true, 2019, "juan.perez@gmail.com", 2));
+        gestor.addUser(new User("María", "González", "mariag", "securepass", false, 2021, "maria.gonzalez@hotmail.com", 1));
+        gestor.addUser(new User("Carlos", "López", "carlosl", "carlospass", true, 2020, "carlos.lopez@outlook.es", 0));
+        gestor.addUser(new User("Ana María", "Pérez", "anap189", "ana1234", false, 2022, "ana.perez@yahoo.com", 3));
+        gestor.addUser(new User("Luis", "Martínez", "luism5", "luispass", true, 2023, "luis.martinez@gmail.com", 1));
+        gestor.addUser(new User("Elena", "González", "elenag", "elenapass", false, 2021, "elena.gonzalez@hotmail.com", 2));
+        gestor.addUser(new User("Sofía", "Pérez", "sofiap", "sofia123", true, 2020, "sofia.perez@outlook.es", 0));
+        gestor.addUser(new User("Diego", "López", "diego2l", "diegopass", false, 2025, "diego.lopez@yahoo.com", 1));
+        gestor.addUser(new User("Laura", "Martínez", "lauramm", "laurapass", true, 2022, "laura.martinez@gmail.com", 2));
+        gestor.addUser(new User("Pedro", "García", "pedrog7", "pedropass", false, 2021, "pedro.garcia@hotmail.com", 0));
+        gestor.addUser(new User("Clara", "García", "clarag19", "clarapass", false, 2025, "clara.garcia@outlook.es", 1));
+        gestor.addUser(new User("Jorge", "Pérez", "jorgep7", "jorgepass", true, 2019, "jorge.perez@yahoo.com", 4));
+        gestor.addUser(new User("Lucía", "González", "lucia12g", "luciapass", false, 2023, "lucia.gonzalez@gmail.com", 0));
+        gestor.addUser(new User("Raúl", "López", "raulop", "raulpass", true, 2022, "raul.lopez@hotmail.com", 1));
+        gestor.addUser(new User("Marta", "Martínez", "martam21", "martapass", false, 2021, "marta.martinez@outlook.es", 2));
+  
+
     }
     
 
