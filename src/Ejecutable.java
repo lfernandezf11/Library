@@ -55,7 +55,7 @@ public static void menuAdmin(){
 
         do{
             System.out.println(".____________________________________________________.");
-            System.out.println("|            BIENVENIDO A TU MENÚ PERSONAL           |"); //User.getNombre().
+            System.out.println("|            BIENVENIDO A TU MENÚ PERSONAL           |"); 
             System.out.println("|------- Elige qué operación quieres realizar: ------|");
             System.out.println("|                                                    |");
             System.out.println("| __LIBRERÍA:                                        |");
@@ -766,12 +766,9 @@ public static void menuAdmin(){
     gestor.agregarLibro(new Libro("Fahrenheit 451", "Ray Bradbury", Categorialibro.CIENCIASFICCION, 15, 1953, false, 0));
     gestor.agregarLibro(new Libro("La espada de la verdad", "Terry Goodkind", Categorialibro.FANTASIA, 16, 1994, false, 0));
     }
-
    
-
-    
 //OBJETOS DE PRUEBA USER
-    public static void repositoriouser(){
+    public void repositoriouser(){
         GestorUsers gestor = new GestorUsers();
 
         gestor.addUser(new User("Juan", "Pérez", "juanp", "pass123", true, 2019, "juan.perez@gmail.com", 2));
