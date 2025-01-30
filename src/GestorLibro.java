@@ -116,7 +116,7 @@ public class GestorLibro {
 
     public int getTotalPrestamos(){
         int prestamosTot = 0;
-        for(int i=0; i<TAM; i++){
+        for(int i=0; i<lleno; i++){
             prestamosTot += libros[i].getVecesPrestado();
         }
         return prestamosTot;
