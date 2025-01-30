@@ -106,7 +106,7 @@ public static void menuAdmin(){
                     case 10: muestraPrestamosAct();
                         break;
                     /*case 11 -> másprestados;*/
-                    case 12: 
+                    case 12: UserMaxPrestamos();
                     case 0: System.out.println("Saliendo del programa...");
                             admin = false;
                         break;
@@ -746,7 +746,15 @@ public static void menuAdmin(){
         usuario.setPrestamosActivos(usuario.getPrestamosActivos() - 1);
 
     System.out.println("Devolución realizada con éxito. Libro: " + libro.gettitulo());
-}
+    }
+
+    //Usuario con más préstamos (ADMIN)
+    public static void UserMaxPrestamos(){
+        GestorUsers user = new GestorUsers();
+        User maxUser = user.usuarioConMasPrestamos();
+        System.out.println("El usuario con más préstamos activos es:\n " + maxUser.toString());
+    }
+
     public void repositoriolibro(){ 
         GestorLibro gestor = new GestorLibro();
     gestor.agregarLibro(new Libro("El niño con el pijama de rayas", "John Boyne", Categorialibro.JUVENIL, 1, 2006, true, 0));
