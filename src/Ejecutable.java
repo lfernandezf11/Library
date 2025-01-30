@@ -53,18 +53,21 @@ public static void menuAdmin(){
                         break;
                     /*case 3 -> sout + metodo de busquedaporestatus + Libro[].toString;
                     case 4 -> sout + metodoeliminarlibro.
-                    case 5 -> //LUCIA. ALTA USUARIO.
-                    case 6 -> //LUCÍA. BÚSQUEDA USUARIO. MENÚ TIPO BUSQUEDA.
+                    case 5 -> //LUCIA. ALTA USUARIO.*/
+                    case 6: menuBusquedaUsuario();
+                        break;
                 //PENDIENTE DE IMPLEMENTACIÓN EN CLASES
-                    case 7 -> préstamo;
+                    /*case 7 -> préstamo;
                     case 8 -> devolver;
                     case 9 -> préstamostotales;
                     case 10 -> préstamosactivos;
                     case 11 -> másprestados;
-                    case 12 -> usuarioconmáspréstamos.
-                    case 0 -> System.out.println("Saliendo del programa...");
-                              admin = false;
-                    default: -> System.out.println("Valor introducido no válido. Prueba de nuevo.");*/
+                    case 12 -> usuarioconmáspréstamos.*/
+                    case 0: System.out.println("Saliendo del programa...");
+                            admin = false;
+                        break;
+                    default: System.out.println("Valor introducido no válido. Prueba de nuevo.");
+                        break;
         }
         
         }while(admin);
@@ -131,19 +134,19 @@ public static void menuAdmin(){
 
             //Switch para elección de opciones, búsqueda de libro por filtro.
                 switch (opcion) {
-                    case 'a' : buscarLibroporTitulo();
+                    case 'a': buscarLibroporTitulo();
                     break;
-                    case 'b' : buscarLibroporAutor();
+                    case 'b': buscarLibroporAutor();
                     break;
-                    case 'c' : buscarLibroporCategoria();
+                    case 'c': buscarLibroporCategoria();
                     break;
                     case '0' : System.out.println("Saliendo del programa...");
-                                filtrolibro = false;                
-        }while(filtrolibro);
-    
-    }
+                                filtrolibro = false; 
+                    break;               
+        }
+    }while(filtrolibro);
 }
-    public void buscarLibroporTitulo() {
+    public static void buscarLibroporTitulo() {
         GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce el título del libro a buscar:");
         Libro resultado=gestor.buscarLibro(sc.nextLine());
@@ -191,6 +194,7 @@ public static void menuAdmin(){
 }
 
 /*Menú para búsqueda de usuario por filtro.*/
+//LUCÍA
     public static void menuBusquedaUsuario(){
         boolean filtroUser = true;    
 
@@ -233,6 +237,8 @@ public static void menuAdmin(){
                 }
         }while(filtroUser);
     }
+
+/*MÉTODOS LUCÍA*/
 //CASE a
     public static void buscaApellido(){
         System.out.println("Introduce el apellido del usuario: ");
@@ -350,6 +356,13 @@ public static void menuAdmin(){
             System.out.println("Usuario no encontrado. No se ha podido realizar el borrado.");
         }
     }
+
+//ADMIN ADDUSER
+    public static void agregaUsuario(){
+        System.out.println("Ingresa los datos del nuevo usuario:");
+        User nuevo = new User(); 
+
+    }
    
        
     public void repositoriolibro(){ 
@@ -389,6 +402,8 @@ public static void menuAdmin(){
     gestor.addUser(new User(numID++, "Mariana", "Gomez", "marianG", "marianaPass", false, "mariana.gomez@yahoo.com"));
     gestor.addUser(new User(numID++, "Fernando", "Lopez", "ferLo", "ferPass", false, "fernando.lopez@gmail.com"));
     gestor.addUser(new User(numID++, "Patricia", "Martinez", "patM", "patricia123", true, "patricia.mtz@mail.com"));
+    gestor.addUser(new User());
+
     }
     }
 
