@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 public class Ejecutable {
     public static Scanner sc = new Scanner(System.in); 
+    public static GestorLibro gestorLibro = new GestorLibro();
     /*Menú login con un máximo de 5 intentos, que maneja tanto casos de usuario nulo como de usuario correcto pero contraseña incorrecta. */    
     public static void main(String[] args) throws Exception {
         boolean login = false;    
@@ -51,7 +52,8 @@ public class Ejecutable {
 
 /*Menú para usuarios Administradores */  
 public static void menuAdmin(){
-    boolean admin = true;    
+    boolean admin = true;  
+    GestorLibro gestor = new GestorLibro();  
 
         do{
             System.out.println(".____________________________________________________.");
@@ -105,8 +107,10 @@ public static void menuAdmin(){
                         break;
                     case 10: muestraPrestamosAct();
                         break;
-                    /*case 11 -> másprestados;*/
+                    case 11 : gestor.dosMasPrestados().toString();                        
+                    break;
                     case 12: UserMaxPrestamos();
+                        break;
                     case 0: System.out.println("Saliendo del programa...");
                             admin = false;
                         break;
@@ -568,13 +572,13 @@ public static void menuAdmin(){
             System.out.println("Nombre de Usuario: ");
             String alias = sc.nextLine();
             while(actualizado.setAlias(alias)== false){
-                System.out.println("El alias sólo puede contener caracteres alfanuméricos en minúscula y sin espacios. Introdúcelo de nuevo: ")
+                System.out.println("El alias sólo puede contener caracteres alfanuméricos en minúscula y sin espacios. Introdúcelo de nuevo: ");
                 alias=sc.nextLine();
             }
             System.out.println("Contraseña: ");
             String password = sc.nextLine();
             while(actualizado.setPassword(password)== false){
-                System.out.println("La contraseña ha de contener entre 6 y 8 caracteres alfa-numéricos, sin espacios ni acentos.\n Acepta punto, guion y guion bajo. Inténtalo de nuevo: ")
+                System.out.println("La contraseña ha de contener entre 6 y 8 caracteres alfa-numéricos, sin espacios ni acentos.\n Acepta punto, guion y guion bajo. Inténtalo de nuevo: ");
                 password=sc.nextLine();
             }
             System.out.println("¿Es administrador?: y/n ");
@@ -643,13 +647,13 @@ public static void menuAdmin(){
             System.out.println("Nombre de Usuario: ");
             String alias = sc.nextLine();
             while(nuevo.setAlias(alias)== false){
-                System.out.println("El alias sólo puede contener caracteres alfanuméricos en minúscula y sin espacios. Introdúcelo de nuevo: ")
+                System.out.println("El alias sólo puede contener caracteres alfanuméricos en minúscula y sin espacios. Introdúcelo de nuevo: ");
                 alias=sc.nextLine();
             }
             System.out.println("Contraseña: ");
             String password = sc.nextLine();
             while(nuevo.setPassword(password)== false){
-                System.out.println("La contraseña ha de contener entre 6 y 8 caracteres alfa-numéricos, sin espacios ni acentos.\n Acepta punto, guion y guion bajo. Inténtalo de nuevo: ")
+                System.out.println("La contraseña ha de contener entre 6 y 8 caracteres alfa-numéricos, sin espacios ni acentos.\n Acepta punto, guion y guion bajo. Inténtalo de nuevo: ");
                 password=sc.nextLine();
             }
             System.out.println("¿Es administrador?: y/n ");
@@ -748,14 +752,18 @@ public static void menuAdmin(){
     System.out.println("Devolución realizada con éxito. Libro: " + libro.gettitulo());
     }
 
+    
+    
+
     //Usuario con más préstamos (ADMIN)
     public static void UserMaxPrestamos(){
         GestorUsers user = new GestorUsers();
         User maxUser = user.usuarioConMasPrestamos();
         System.out.println("El usuario con más préstamos activos es:\n " + maxUser.toString());
     }
+    
 
-    public void repositoriolibro(){ 
+    public static void repositoriolibro(){ 
         GestorLibro gestor = new GestorLibro();
     gestor.agregarLibro(new Libro("El niño con el pijama de rayas", "John Boyne", Categorialibro.JUVENIL, 1, 2006, true, 0));
     gestor.agregarLibro(new Libro("Dune", "Frank Herbert", Categorialibro.CIENCIASFICCION, 2, 1965, true, 5));
@@ -776,7 +784,7 @@ public static void menuAdmin(){
     }
    
 //OBJETOS DE PRUEBA USER
-    public void repositoriouser(){
+    public static void repositoriouser(){
         GestorUsers gestor = new GestorUsers();
 
         gestor.addUser(new User("Juan", "Pérez", "juanp", "pass123", true, 2019, "juan.perez@gmail.com", 2));

@@ -126,6 +126,27 @@ public class GestorLibro {
         return prestamosTot;
     }
     
+    public Libro[] dosMasPrestados() {
+        if (lleno == 0) {
+            return new Libro[0];
+        }
+    
+        Libro[] masPrestados = new Libro[2];
+        masPrestados[0] = libros[0];
+        masPrestados[1] = null;
+    
+        for (int i = 1; i < lleno; i++) {
+            if (libros[i].getVecesPrestado() > masPrestados[0].getVecesPrestado()) {
+                masPrestados[1] = masPrestados[0];
+                masPrestados[0] = libros[i];
+            } else if (masPrestados[1] == null || libros[i].getVecesPrestado() > masPrestados[1].getVecesPrestado()) {
+                masPrestados[1] = libros[i];
+            }
+            return masPrestados;
+        }
+    }
+    
+
     /*Devolver los libros como String */
     public String toString(){
         String stringLibro = "";
