@@ -97,9 +97,30 @@ public class GestorLibro {
             }
         }
     
-        return Arrays.copyOf(disponibles, contDisponible);  // Devuelvo el array de libros disponibles
+        return Arrays.copyOf(disponibles, contDisponible); 
     }
+    /*La misma lógica que para el getLibrosDisponibles. Los prestados son un array de los libros no disponibles.*/
+    public Libro[] getLibrosPrestados() {
+        Libro[] prestados = new Libro[TAM];
+        int contprestados = 0;
     
+        for (int i = 0; i < lleno; i++) {
+            if (libros[i].getisdisponible() == false) {
+                prestados[contprestados] = libros[i];
+                contprestados++;
+            }
+        }
+    
+        return Arrays.copyOf(prestados, contprestados); 
+    }
+
+    public int getTotalPrestamos(){
+        int prestamosTot = 0;
+        for(int i=0; i<TAM; i++){
+            prestamosTot += libros[i].getVecesPrestado();
+        }
+        return prestamosTot;
+    }
     
     /*Devolver los libros como String */
     public String toString(){
