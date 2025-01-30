@@ -124,7 +124,22 @@ public class GestorUsers {
         }
         return false;
     }
-    /** String toString devuelve un array de usuarios en una cadena.
+
+    /** usuarioConMasPrestamos recorre el array usuario y guarda la info del usuario con más préstamos comparando con el objeto anterior. */
+    public User usuarioConMasPrestamos() {
+        User usuarioMaxPrestamos = null;
+        int maxPrestamos = -1;
+
+        for (int i = 0; i < filled; i++) {
+            User actual = usuarios[i];
+            if (actual != null && actual.getPrestamosActivos() > maxPrestamos) {
+                maxPrestamos = actual.getPrestamosActivos();
+                usuarioMaxPrestamos = actual;
+            }
+        }
+        return usuarioMaxPrestamos;
+    }
+       /** String toString devuelve un array de usuarios en una cadena.
      * Apreciaciones: 
      * - Cuando un método es estático (vs. de instancia) puede manejar arrays externos a la clase sin necesidad de crear una instancia GestorUsers.
      * - En el bucle que recorre el array, no podemos utilizar como condición de salida i < filled, porque filled es un campo no estático.
@@ -133,7 +148,7 @@ public class GestorUsers {
      *   Como este método ya está sobreescrito, no hace falta hacer aquí un @Override.
      * @param arrayUsuarios array de Usuarios para convertir a String.
      * @return Una cadena con la información de cada objeto String, separados por un salto de línea.
-     */
+     * */
     public static String toString(User [] arrayUsuarios) {
     String stringUsuarios = "";
     for (int i = 0; i < arrayUsuarios.length; i++) {

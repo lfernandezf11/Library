@@ -1,3 +1,7 @@
+/**
+ * @author: Lucía Fernández Florencio
+ * @author: María Teresa Calvo Peña
+ */
 public class Libro {
     private String titulo;
     private String autor;
