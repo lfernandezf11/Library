@@ -746,7 +746,7 @@ public static void menuAdmin(){
 
     System.out.println("Devolución realizada con éxito. Libro: " + libro.gettitulo());
 }
-    public void repositoriolibro(){ 
+    public static void repositoriolibro(){ 
         GestorLibro gestor = new GestorLibro();
     gestor.agregarLibro(new Libro("El niño con el pijama de rayas", "John Boyne", Categorialibro.JUVENIL, 1, 2006, true, 0));
     gestor.agregarLibro(new Libro("Dune", "Frank Herbert", Categorialibro.CIENCIASFICCION, 2, 1965, true, 5));
