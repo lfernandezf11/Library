@@ -4,6 +4,7 @@ public class GestorLibro {
     private Libro[]libros;
     private int lleno;
     private static final int TAM = 100;
+    
     /*Creamos un array con los nuevos libros */
     public GestorLibro(){
         libros = new Libro[TAM];
@@ -14,6 +15,7 @@ public class GestorLibro {
         if(lleno<TAM){
             libros[lleno] = l;/*Añadimos el libro al array*/
             lleno++;
+            System.out.println("Libro agregado: " + l);
         }else{
             System.out.println("No se puede agregar el libro, la biblioteca está llena.");
         }
@@ -58,15 +60,16 @@ public class GestorLibro {
             libros[--lleno] = null;/*Reducimos el tamaño del array y ponemos null en la última posición */
             return true;
         }else{
+            System.out.println("Libro no encontrado");
             return false;
         }
     }
     /*Buscar Libros por categoría */
-    public Libro[] buscarporCategoria(Categorialibro categorialibro){
+    public Libro[] buscarporCategoria(Categorialibro categoria){
         Libro[]resultado=new Libro[TAM];
         int categoriaLlena = 0;
         for(int i = 0; i < lleno; i++){
-            if(libros[i].getCategorialibro().equals(categorialibro)){
+            if(libros[i].getCategorialibro().equals(categoria)){
                 resultado[categoriaLlena] = libros[i];
                 categoriaLlena++;
             }
@@ -82,16 +85,21 @@ public class GestorLibro {
             }
         }
     }
-    /*public Libro[] obtenerLibrosDisponibles(){
-        Libro[] disponible = new Libro[TAM];
+
+    public Libro[] getLibrosDisponibles() {
+        Libro[] disponibles = new Libro[TAM];
         int contDisponible = 0;
-        for(int i = 0; i < lleno; i++){
-            if (libros[i].isdisponible()){
-                disponible [contDisponible] = libros[i];
+    
+        for (int i = 0; i < lleno; i++) {
+            if (libros[i].getisdisponible()) {
+                disponibles[contDisponible] = libros[i];
                 contDisponible++;
             }
-        }return Arrays.copyOf(disponible, contDisponible);
-    }*/
+        }
+    
+        return Arrays.copyOf(disponibles, contDisponible);  // Devuelvo el array de libros disponibles
+    }
+    
     
     /*Devolver los libros como String */
     public String toString(){

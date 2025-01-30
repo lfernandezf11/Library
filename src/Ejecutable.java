@@ -48,14 +48,16 @@ public static void menuAdmin(){
     
             //Switch para elección de opciones, usuario administrador.
                 switch (opcion) {
-                    /*  1 -> función altalibro que utilice el método agregarlibro;*/
+                    case 1 : anadirlibro();
+                    break;
                     case 2: menuBusquedaLibro();
                         break;
-                    /*case 3 -> sout + metodo de busquedaporestatus + Libro[].toString;
-                    case 4 -> sout + metodoeliminarlibro.
-                    case 5 -> //LUCIA. ALTA USUARIO.*/
-                    case 6: menuBusquedaUsuario();
-                        break;
+                    case 3 : mostrarLibrosDisponibles();
+                    break;
+                    case 4 : eliminarLibro();
+                    break;
+                    /*case 5 -> //LUCIA. ALTA USUARIO.
+                    case 6 -> //LUCÍA. BÚSQUEDA USUARIO. MENÚ TIPO BUSQUEDA.
                 //PENDIENTE DE IMPLEMENTACIÓN EN CLASES
                     /*case 7 -> préstamo;
                     case 8 -> devolver;
@@ -72,10 +74,95 @@ public static void menuAdmin(){
         
         }while(admin);
     }
-    
+    public static void anadirlibro(){
+        GestorLibro gestor = new GestorLibro();
+        System.out.println("Introduce el título del libro:");
+                String titulo = sc.nextLine();
+                
+                System.out.println("Introduce el autor del libro:");
+                String autor = sc.nextLine();
 
-    
+                System.out.println("Introduce el ID del libro:");
+                int idLibro = Integer.parseInt(sc.nextLine());
 
+                System.out.println("Introduce el año de publicación del libro:");
+                int fechapubli = Integer.parseInt(sc.nextLine());
+
+                System.out.println("¿Está el libro disponible? (true/false):");
+                boolean disponible = Boolean.parseBoolean(sc.nextLine());
+                
+                System.out.println("Introduce la categoría del libro (usa la opción correspondiente):");
+                String categoria = sc.nextLine();
+                
+                // Aquí deberías manejar la conversión de la categoría de texto a tu enum Categorialibro
+                Categorialibro categoriaEnum = null;
+
+                // Comprobamos la categoría ingresada por el administrador
+                if (categoria.equals("JUVENIL")) {
+                    categoriaEnum = Categorialibro.JUVENIL;
+                } else if (categoria.equals("CIENCIASFICCION")) {
+                    categoriaEnum = Categorialibro.CIENCIASFICCION;
+                } else if (categoria.equals("FANTASIA")) {
+                    categoriaEnum = Categorialibro.FANTASIA;
+                } else if (categoria.equals("ENSAYO")) {
+                    categoriaEnum = Categorialibro.ENSAYO;
+                } else if (categoria.equals("BIOGRAFIA")) {
+                    categoriaEnum = Categorialibro.BIOGRAFIA;
+                } else if (categoria.equals("NOVELAGRAFICA")) {
+                    categoriaEnum = Categorialibro.NOVELAGRAFICA;
+                } else if (categoria.equals("THRILLER")) {
+                    categoriaEnum = Categorialibro.THRILLER;
+                } else if (categoria.equals("POESIA")) {
+                    categoriaEnum = Categorialibro.POESIA;
+                } else if (categoria.equals("INFANTIL")) {
+                    categoriaEnum = Categorialibro.INFANTIL;
+                } else if (categoria.equals("CLASICO")) {
+                    categoriaEnum = Categorialibro.CLASICO;
+                } else if (categoria.equals("HISTORIA")) {
+                    categoriaEnum = Categorialibro.HISTORIA;
+                } else if (categoria.equals("MISTERIO")) {
+                    categoriaEnum = Categorialibro.MISTERIO;
+                } else if (categoria.equals("ROMANCE")) {
+                    categoriaEnum = Categorialibro.ROMANCE;
+                }
+
+                // Si la categoría es válida, creamos el libro
+                if (categoriaEnum != null) {
+                    // Crear el libro con los datos ingresados
+                    Libro libro = new Libro(titulo, autor, categoriaEnum, idLibro, fechapubli, disponible);
+
+                    // Agregar el libro al GestorLibro
+                    gestor.agregarLibro(libro);
+                } else {
+                    System.out.println("Categoría no válida. El libro no puede ser agregado.");
+                }
+    }
+    public static void mostrarLibrosDisponibles() {
+        GestorLibro gestor = new GestorLibro();
+        Libro[] librosDisponibles = gestor.getLibrosDisponibles(); // Asegúrate de tener este método en GestorLibro.
+    
+        if (librosDisponibles.length == 0) {
+            System.out.println("No hay libros disponibles.");
+        } else {
+            System.out.println("Libros disponibles:");
+            for (Libro libro : librosDisponibles) {
+                System.out.println(libro);  // Aquí muestra el libro con su método toString()
+            }
+        }
+    }
+    public static void eliminarLibro() {
+        System.out.println("Introduce el título del libro a eliminar:");
+        String titulo = sc.nextLine(); // Solicitar al usuario que ingrese el título del libro
+        GestorLibro gestor = new GestorLibro();
+        
+        boolean eliminado = gestor.eliminarLibro(titulo); // Llamamos al método eliminarLibro
+    
+        if (eliminado) {
+            System.out.println("El libro '" + titulo + "' ha sido eliminado.");
+        } else {
+            System.out.println("No se pudo eliminar el libro '" + titulo + "'. Verifica que el título sea correcto.");
+        }
+    }
 /*Menú para usuarios no administradores*/  
     public void menuNoAdmin(){
         boolean noadmin = true;    
@@ -141,11 +228,13 @@ public static void menuAdmin(){
                     case 'c': buscarLibroporCategoria();
                     break;
                     case '0' : System.out.println("Saliendo del programa...");
-                                filtrolibro = false; 
-                    break;               
-        }
-    }while(filtrolibro);
-}
+                                filtrolibro = false;
+                                break;
+                            default:
+                            System.out.println("Opción no válida. Inténtalo de nuevo.");
+                }                
+        }while(filtrolibro);
+    }
     public static void buscarLibroporTitulo() {
         GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce el título del libro a buscar:");
@@ -158,7 +247,7 @@ public static void menuAdmin(){
     }
     
 
-    public void buscarLibroporAutor() {
+    public static void buscarLibroporAutor() {
         GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce el autor del libro a buscar:");
         String autor = sc.nextLine();
@@ -171,14 +260,57 @@ public static void menuAdmin(){
             System.out.println(libro);
         }
     }
-/*No se como hacerla porque la salida que espera es un enum */
-    public void buscarLibroporCategoria() {
+    public static void buscarLibroporCategoria() {
         GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce la categoría del libro a buscar:");
-        String categoria = sc.nextLine();
-        Libro[]resultado=gestor.buscarporCategoria(categoria);
+        String categoria = sc.nextLine().toUpperCase(); // Convertir a mayúsculas para evitar problemas de mayúsculas/minúsculas
+        
+        Categorialibro categoriaEnum = null;
+        
+            // Comprobación manual para asignar el valor del enum
+        if (categoria.equals("JUVENIL")) {
+                categoriaEnum = Categorialibro.JUVENIL;
+        } else if (categoria.equals("CIENCIASFICCION")) {
+            categoriaEnum = Categorialibro.CIENCIASFICCION;
+        } else if (categoria.equals("FANTASIA")) {
+            categoriaEnum = Categorialibro.FANTASIA;
+        } else if (categoria.equals("ENSAYO")) {
+            categoriaEnum = Categorialibro.ENSAYO;
+        } else if (categoria.equals("BIOGRAFIA")) {
+            categoriaEnum = Categorialibro.BIOGRAFIA;
+        } else if (categoria.equals("NOVELAGRAFICA")) {
+            categoriaEnum = Categorialibro.NOVELAGRAFICA;
+        } else if (categoria.equals("THRILLER")) {
+            categoriaEnum = Categorialibro.THRILLER;
+        } else if (categoria.equals("POESIA")) {
+            categoriaEnum = Categorialibro.POESIA;
+        } else if (categoria.equals("INFANTIL")) {
+            categoriaEnum = Categorialibro.INFANTIL;
+        } else if (categoria.equals("CLASICO")) {
+            categoriaEnum = Categorialibro.CLASICO;
+        } else if (categoria.equals("HISTORIA")) {
+            categoriaEnum = Categorialibro.HISTORIA;
+        } else if (categoria.equals("MISTERIO")) {
+            categoriaEnum = Categorialibro.MISTERIO;
+        } else if (categoria.equals("ROMANCE")) {
+            categoriaEnum = Categorialibro.ROMANCE;
+        }
+        
+            // Si se encontró la categoría correspondiente
+        if (categoriaEnum != null) {
+            Libro[] resultado = gestor.buscarporCategoria(categoriaEnum);
+            if (resultado.length == 0) {
+                System.out.println("No se encontraron libros en la categoría " + categoriaEnum);
+            } else {
+                System.out.println("Libros encontrados en la categoría " + categoriaEnum + ":");
+                for (Libro libro : resultado) {
+                    System.out.println(libro);
+                }
+            }
+        } else {
+            System.out.println("Categoría no válida. Por favor, introduce una categoría correcta.");
+        }
     }
-
     public void eliminarLibroporAutor() {
         GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce el autor del libro que desea eliminar:");
@@ -191,6 +323,82 @@ public static void menuAdmin(){
             System.out.println("No se encontraron libros de ese autor.");
         }
     }
+    public static void menuCategoriaLibro(){
+        boolean filtrocategoria = true;
+        GestorLibro gestorLibro = new GestorLibro();
+    do{
+            System.out.println(".____________________________________________________.");
+            System.out.println("|                 CATEGORÍA DE LIBROS                |"); //User.getNombre().
+            System.out.println("|------ ¿Qué categoría de libro quieres añadir? -----|");
+            System.out.println("|                                                    |");
+            System.out.println("|      1) Juvenil                                    |");
+            System.out.println("|      2) CienciasFicción                            |");
+            System.out.println("|      3) Fantasía                                   |");
+            System.out.println("|      4) Ensayo                                     |"); 
+            System.out.println("|      5) Biografía                                  |");
+            System.out.println("|      6) NovelaGráfica                              |");
+            System.out.println("|      7) Thriller                                   |");
+            System.out.println("|      8) Poesía                                     |");
+            System.out.println("|      9) Infantil                                   |");
+            System.out.println("|      10) Clásico                                   |");
+            System.out.println("|      11) Historia                                  |");
+            System.out.println("|      12) Misterio                                  |"); 
+            System.out.println("|      13) Romance                                   |");
+            System.out.println("|                                                    |");
+            System.out.println("|---------- Pulsa 0 para salir del programa ---------|");  
+            System.out.println("|____________________________________________________|");
+           
+           int opcion = Integer.parseInt(sc.nextLine());
+            switch (opcion) {
+                    case 1:
+                gestorLibro.buscarporCategoria(Categorialibro.JUVENIL);
+                    break;
+                    case 2:
+                gestorLibro.buscarporCategoria(Categorialibro.CIENCIASFICCION);
+                    break;
+                    case 3:
+                gestorLibro.buscarporCategoria(Categorialibro.FANTASIA);
+                    break;
+                    case 4:
+                gestorLibro.buscarporCategoria(Categorialibro.ENSAYO);
+                    break;
+                    case 5:
+                gestorLibro.buscarporCategoria(Categorialibro.BIOGRAFIA);
+                    break;
+                    case 6:
+                gestorLibro.buscarporCategoria(Categorialibro.NOVELAGRAFICA);
+                    break;
+                    case 7:
+                gestorLibro.buscarporCategoria(Categorialibro.THRILLER);
+                    break;
+                    case 8:
+                gestorLibro.buscarporCategoria(Categorialibro.POESIA);
+                    break;
+                    case 9:
+                gestorLibro.buscarporCategoria(Categorialibro.INFANTIL);
+                    break;
+                    case 10:
+                gestorLibro.buscarporCategoria(Categorialibro.CLASICO);
+                    break;
+                    case 11:
+                gestorLibro.buscarporCategoria(Categorialibro.HISTORIA);
+                    break;
+                    case 12:
+                gestorLibro.buscarporCategoria(Categorialibro.MISTERIO);
+                    break;
+                    case 13:
+                gestorLibro.buscarporCategoria(Categorialibro.ROMANCE);
+                    break;
+                    case 0: System.out.println("Volviendo al menú principal...");
+                        filtrocategoria = false;
+                    break;
+                default:
+                System.out.println("Opción no válida. Inténtalo de nuevo.");
+                    break;
+            }
+        }while (filtrocategoria);
+    }
+    
 }
 
 /*Menú para búsqueda de usuario por filtro.*/
@@ -405,7 +613,10 @@ public static void menuAdmin(){
     gestor.addUser(new User());
 
     }
-    }
+
+    
+
+    
 
 
     
