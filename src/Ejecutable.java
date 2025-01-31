@@ -3,15 +3,52 @@
  * @author: María Teresa Calvo Peña
  */
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class Ejecutable {
     public static Scanner sc = new Scanner(System.in); 
-    public static GestorLibro gestorLibro = new GestorLibro();
+    public static GestorUsers gestor = new GestorUsers();
+    public static GestorLibro gestorL = new GestorLibro();
+    
+    static{
+            gestor.addUser(new User("Juan", "Pérez", "juanp", "pass123", true, 2019, "juan.perez@gmail.com", 2));
+            gestor.addUser(new User("María", "González", "mariag", "securepass", false, 2021, "maria.gonzalez@hotmail.com", 1));
+            gestor.addUser(new User("Carlos", "López", "carlosl", "carlospass", true, 2020, "carlos.lopez@outlook.es", 0));
+            gestor.addUser(new User("Ana María", "Pérez", "anap189", "ana1234", false, 2022, "ana.perez@yahoo.com", 3));
+            gestor.addUser(new User("Luis", "Martínez", "luism5", "luispass", true, 2023, "luis.martinez@gmail.com", 1));
+            gestor.addUser(new User("Elena", "González", "elenag", "elenapass", false, 2021, "elena.gonzalez@hotmail.com", 2));
+            gestor.addUser(new User("Sofía", "Pérez", "sofiap", "sofia123", true, 2020, "sofia.perez@outlook.es", 0));
+            gestor.addUser(new User("Diego", "López", "diego2l", "diegopass", false, 2025, "diego.lopez@yahoo.com", 1));
+            gestor.addUser(new User("Laura", "Martínez", "lauramm", "laurapass", true, 2022, "laura.martinez@gmail.com", 2));
+            gestor.addUser(new User("Pedro", "García", "pedrog7", "pedropass", false, 2021, "pedro.garcia@hotmail.com", 0));
+            gestor.addUser(new User("Clara", "García", "clarag19", "clarapass", false, 2025, "clara.garcia@outlook.es", 1));
+            gestor.addUser(new User("Jorge", "Pérez", "jorgep7", "jorgepass", true, 2019, "jorge.perez@yahoo.com", 4));
+            gestor.addUser(new User("Lucía", "González", "lucia12g", "luciapass", false, 2023, "lucia.gonzalez@gmail.com", 0));
+            gestor.addUser(new User("Raúl", "López", "raulop", "raulpass", true, 2022, "raul.lopez@hotmail.com", 1));
+            gestor.addUser(new User("Marta", "Martínez", "martam21", "martapass", false, 2021, "marta.martinez@outlook.es", 2));
+
+            gestorL.agregarLibro(new Libro("El niño con el pijama de rayas", "John Boyne", Categorialibro.JUVENIL, 1, 2006, true, 0));
+            gestorL.agregarLibro(new Libro("Dune", "Frank Herbert", Categorialibro.CIENCIASFICCION, 2, 1965, true, 5));
+            gestorL.agregarLibro(new Libro("El Señor de los Anillos", "J.R.R. Tolkien", Categorialibro.FANTASIA, 3, 1954, false, 3));
+            gestorL.agregarLibro(new Libro("Meditaciones", "Marco Aurelio", Categorialibro.ENSAYO, 4, 1800, true, 2));
+            gestorL.agregarLibro(new Libro("El diario de Ana Frank", "Ana Frank", Categorialibro.BIOGRAFIA, 5, 1947, true, 0));
+            gestorL.agregarLibro(new Libro("Maus", "Art Spiegelman", Categorialibro.NOVELAGRAFICA, 6, 1980, true, 4));
+            gestorL.agregarLibro(new Libro("La chica del tren", "Paula Hawkins", Categorialibro.THRILLER, 7, 2015, true, 7));
+            gestorL.agregarLibro(new Libro("Cien sonetos de amor", "Pablo Neruda", Categorialibro.POESIA, 8, 1959, true, 3));
+            gestorL.agregarLibro(new Libro("Harry Potter y la piedra filosofal", "J.K. Rowling", Categorialibro.INFANTIL, 9, 1997, true, 2));
+            gestorL.agregarLibro(new Libro("Don Quijote de la Mancha", "Miguel de Cervantes", Categorialibro.CLASICO, 10, 1605, false, 1));
+            gestorL.agregarLibro(new Libro("Historia de la Segunda Guerra Mundial", "Winston Churchill", Categorialibro.HISTORIA, 11, 1948, false, 5));
+            gestorL.agregarLibro(new Libro("El código Da Vinci", "Dan Brown", Categorialibro.MISTERIO, 12, 2003, false, 2));
+            gestorL.agregarLibro(new Libro("Orgullo y prejuicio", "Jane Austen", Categorialibro.ROMANCE, 13, 1813, true, 4));
+            gestorL.agregarLibro(new Libro("El último deseo", "Andrzej Sapkowski", Categorialibro.JUVENIL, 14, 1993, true, 8));
+            gestorL.agregarLibro(new Libro("Fahrenheit 451", "Ray Bradbury", Categorialibro.CIENCIASFICCION, 15, 1953, false, 0));
+            gestorL.agregarLibro(new Libro("La espada de la verdad", "Terry Goodkind", Categorialibro.FANTASIA, 16, 1994, false, 0));
+    }
+   
+
     /*Menú login con un máximo de 5 intentos, que maneja tanto casos de usuario nulo como de usuario correcto pero contraseña incorrecta. */    
     public static void main(String[] args) throws Exception {
         boolean login = false;    
-        int intentos = 5;
+        int intentos = 4;
 
         do{
             System.out.println(".____________________________________________________.");
@@ -24,30 +61,28 @@ public class Ejecutable {
             System.out.println("Contraseña: ");
             String password = sc.nextLine();
 
-            GestorUsers inicio = new GestorUsers();
-            User userlogin = inicio.searchbyAlias(alias);
-            while(userlogin == null || (userlogin != null && userlogin.getPassword() !=(password) )){
-                System.out.println("Usuario o contraseña incorrectos. Inténtelo de nuevo . Le quedan " + (intentos-1) + " intentos.");
-                System.out.println("Usuario: ");
-                alias = sc.nextLine();
-                System.out.println("Contraseña: ");
-                password = sc.nextLine();
-                intentos--;
-            }
-            if(userlogin != null && userlogin.getPassword().equals(password)){
-                login = true;
-                System.out.println("Inicio de sesión correcto. Bienvenido, " + userlogin.getNombre() + ".");
-                if(userlogin.getEsAdmin()){
-                    menuAdmin();
-                }else{
-                    menuNoAdmin();
+            User userlogin = gestor.searchbyAlias(alias);
+            while(intentos>0){
+                if(userlogin == null  || (!userlogin.equals(null) && !userlogin.getPassword().equals(password))){
+                    System.out.println("Usuario o contraseña incorrectos. Inténtelo de nuevo . Le quedan " + intentos + " intentos.");
+                    System.out.println("Usuario: ");
+                    alias = sc.nextLine();
+                    System.out.println("Contraseña: ");
+                    password = sc.nextLine();
+                    intentos--;
+                }else if(userlogin != null && userlogin.getAlias().equals(alias) && userlogin.getPassword().equals(password)){
+                    login = true;
+                    System.out.println("Inicio de sesión correcto. Bienvenido, " + userlogin.getNombre() + ".");
+                    if(userlogin.getEsAdmin()){
+                        menuAdmin();
+                    }else{
+                        menuNoAdmin();
+                    }
                 }
-            }else{
-                System.out.println("Número de intentos agotados. Incapaz de ingresar. "); 
-            }
-           
-        }while (!login && intentos >0);
-    }
+        }System.out.println("Número de intentos agotados. Incapaz de ingresar. ");
+    }while (!login && intentos >0);
+}
+
 
 
 /*Menú para usuarios Administradores */  
@@ -137,7 +172,7 @@ public static void menuAdmin(){
                 System.out.println("¿Está el libro disponible? (true/false):");
                 boolean disponible = Boolean.parseBoolean(sc.nextLine());
                 
-                System.out.println("Introduce la categoría del libro (usa la opción correspondiente):");
+                System.out.println("Introduce la categoría del libro (JUVENIL, CIENCIASFICCION, FANTASIA, ENSAYO, BIOGRAFIA, NOVELAGRAFICA, THRILLER, POESIA, INFANTIL, CLASICO, HISTORIA, MISTERIO, ROMANCE):");
                 String categoria = sc.nextLine();
 
                 System.out.println("Introduce el número de veces que el libro ha sido prestado: ");
@@ -761,54 +796,11 @@ public static void menuAdmin(){
         User maxUser = user.usuarioConMasPrestamos();
         System.out.println("El usuario con más préstamos activos es:\n " + maxUser.toString());
     }
-    
-
-    public static void repositoriolibro(){ 
-        GestorLibro gestor = new GestorLibro();
-    gestor.agregarLibro(new Libro("El niño con el pijama de rayas", "John Boyne", Categorialibro.JUVENIL, 1, 2006, true, 0));
-    gestor.agregarLibro(new Libro("Dune", "Frank Herbert", Categorialibro.CIENCIASFICCION, 2, 1965, true, 5));
-    gestor.agregarLibro(new Libro("El Señor de los Anillos", "J.R.R. Tolkien", Categorialibro.FANTASIA, 3, 1954, false, 3));
-    gestor.agregarLibro(new Libro("Meditaciones", "Marco Aurelio", Categorialibro.ENSAYO, 4, 1800, true, 2));
-    gestor.agregarLibro(new Libro("El diario de Ana Frank", "Ana Frank", Categorialibro.BIOGRAFIA, 5, 1947, true, 0));
-    gestor.agregarLibro(new Libro("Maus", "Art Spiegelman", Categorialibro.NOVELAGRAFICA, 6, 1980, true, 4));
-    gestor.agregarLibro(new Libro("La chica del tren", "Paula Hawkins", Categorialibro.THRILLER, 7, 2015, true, 7));
-    gestor.agregarLibro(new Libro("Cien sonetos de amor", "Pablo Neruda", Categorialibro.POESIA, 8, 1959, true, 3));
-    gestor.agregarLibro(new Libro("Harry Potter y la piedra filosofal", "J.K. Rowling", Categorialibro.INFANTIL, 9, 1997, true, 2));
-    gestor.agregarLibro(new Libro("Don Quijote de la Mancha", "Miguel de Cervantes", Categorialibro.CLASICO, 10, 1605, false, 1));
-    gestor.agregarLibro(new Libro("Historia de la Segunda Guerra Mundial", "Winston Churchill", Categorialibro.HISTORIA, 11, 1948, false, 5));
-    gestor.agregarLibro(new Libro("El código Da Vinci", "Dan Brown", Categorialibro.MISTERIO, 12, 2003, false, 2));
-    gestor.agregarLibro(new Libro("Orgullo y prejuicio", "Jane Austen", Categorialibro.ROMANCE, 13, 1813, true, 4));
-    gestor.agregarLibro(new Libro("El último deseo", "Andrzej Sapkowski", Categorialibro.JUVENIL, 14, 1993, true, 8));
-    gestor.agregarLibro(new Libro("Fahrenheit 451", "Ray Bradbury", Categorialibro.CIENCIASFICCION, 15, 1953, false, 0));
-    gestor.agregarLibro(new Libro("La espada de la verdad", "Terry Goodkind", Categorialibro.FANTASIA, 16, 1994, false, 0));
-    }
-   
-//OBJETOS DE PRUEBA USER
-    public static void repositoriouser(){
-        GestorUsers gestor = new GestorUsers();
-
-        gestor.addUser(new User("Juan", "Pérez", "juanp", "pass123", true, 2019, "juan.perez@gmail.com", 2));
-        gestor.addUser(new User("María", "González", "mariag", "securepass", false, 2021, "maria.gonzalez@hotmail.com", 1));
-        gestor.addUser(new User("Carlos", "López", "carlosl", "carlospass", true, 2020, "carlos.lopez@outlook.es", 0));
-        gestor.addUser(new User("Ana María", "Pérez", "anap189", "ana1234", false, 2022, "ana.perez@yahoo.com", 3));
-        gestor.addUser(new User("Luis", "Martínez", "luism5", "luispass", true, 2023, "luis.martinez@gmail.com", 1));
-        gestor.addUser(new User("Elena", "González", "elenag", "elenapass", false, 2021, "elena.gonzalez@hotmail.com", 2));
-        gestor.addUser(new User("Sofía", "Pérez", "sofiap", "sofia123", true, 2020, "sofia.perez@outlook.es", 0));
-        gestor.addUser(new User("Diego", "López", "diego2l", "diegopass", false, 2025, "diego.lopez@yahoo.com", 1));
-        gestor.addUser(new User("Laura", "Martínez", "lauramm", "laurapass", true, 2022, "laura.martinez@gmail.com", 2));
-        gestor.addUser(new User("Pedro", "García", "pedrog7", "pedropass", false, 2021, "pedro.garcia@hotmail.com", 0));
-        gestor.addUser(new User("Clara", "García", "clarag19", "clarapass", false, 2025, "clara.garcia@outlook.es", 1));
-        gestor.addUser(new User("Jorge", "Pérez", "jorgep7", "jorgepass", true, 2019, "jorge.perez@yahoo.com", 4));
-        gestor.addUser(new User("Lucía", "González", "lucia12g", "luciapass", false, 2023, "lucia.gonzalez@gmail.com", 0));
-        gestor.addUser(new User("Raúl", "López", "raulop", "raulpass", true, 2022, "raul.lopez@hotmail.com", 1));
-        gestor.addUser(new User("Marta", "Martínez", "martam21", "martapass", false, 2021, "marta.martinez@outlook.es", 2));
-  
 
     }
     
 
-    }
-
+    
     
 
     
