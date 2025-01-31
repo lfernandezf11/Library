@@ -560,18 +560,18 @@ public static void menuAdmin(){
 //CASE 4
     public static void buscaTipo(){
         System.out.println("Introduce 'admin' para listar a los administradores, 'no admin' para listar el resto de usuarios:");
-        User [] arraytype;
+        User [] arraytipo;
         String entrada = sc.nextLine();
-        while (entrada != "admin" && entrada != "no admin"){
+        while (!entrada.equals("admin") && !entrada.equals("no admin")){
             System.out.println("Input no válido. Escribe 'admin' o 'no admin' (sin comillas):");
             entrada=sc.nextLine();
         }
-        if(entrada == "admin"){
-            arraytype = gestor.searchbyAdminNoAdmin(true);
-            System.out.println("Listado de administradores: \n" + GestorUsers.toString(arraytype));
+        if(entrada.equals("admin")){
+            arraytipo = gestor.searchbyAdminNoAdmin(true);
+            System.out.println("Listado de administradores: \n" + arraytipo.toString());
         }else{
-            arraytype = gestor.searchbyAdminNoAdmin(false);
-            System.out.println("Listado de usuarios no administradores: \n" + GestorUsers.toString(arraytype));
+            arraytipo = gestor.searchbyAdminNoAdmin(false);
+            System.out.println("Listado de usuarios no administradores: \n" + arraytipo.toString());
         } 
     }
 //CASE 5 

@@ -79,7 +79,7 @@ public class GestorUsers {
     public User[] searchbyAdminNoAdmin(Boolean esAdmin){
         User[] resultado = new User[tam];
         int tipoFilled = 0;
-        for(int i=0; i<tipoFilled; i++){
+        for(int i=0; i<tam; i++){
             if(usuarios[i].getEsAdmin().equals(esAdmin)){
                 resultado[tipoFilled]=usuarios[i];
                 tipoFilled++;
