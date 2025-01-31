@@ -146,8 +146,8 @@ public static void menuAdmin(){
                     break;
                     case 12: UserMaxPrestamos();
                         break;
-                    case 0: System.out.println("Saliendo del programa...");
-                            admin = false;
+                    case 0: admin = false;
+                    System.out.println("Saliendo del programa...");       
                         break;
                     default: System.out.println("Valor introducido no válido. Prueba de nuevo.");
                         break;
@@ -295,9 +295,9 @@ public static void menuAdmin(){
             System.out.println("|                  BUSCAR UN LIBRO                   |");
             System.out.println("|----------- ¿Cómo deseas buscar tu libro? ----------|");
             System.out.println("|                                                    |");
-            System.out.println("|      a) Por título.                                |");
-            System.out.println("|      b) Por autor.                                 |");
-            System.out.println("|      c) Por categoría.                             |");
+            System.out.println("|      1) Por título.                                |");
+            System.out.println("|      2) Por autor.                                 |");
+            System.out.println("|      3) Por categoría.                             |");
             System.out.println("|                                                    |");
             System.out.println("|------------ Pulsa 0 para volver al menú -----------|");    
             System.out.println("|____________________________________________________|"); 
@@ -306,14 +306,15 @@ public static void menuAdmin(){
 
             //Switch para elección de opciones, búsqueda de libro por filtro.
                 switch (opcion) {
-                    case 'a': buscarLibroporTitulo();
+                    case 1: buscarLibroporTitulo();
                     break;
-                    case 'b': buscarLibroporAutor();
+                    case 2: buscarLibroporAutor();
                     break;
-                    case 'c': buscarLibroporCategoria();
+                    case 3: buscarLibroporCategoria();
                     break;
-                    case '0': System.out.println("Saliendo del programa...");
+                    case 0: System.out.println("Saliendo del programa...");
                               filtrolibro = false;
+
                     break;
                     default: System.out.println("Opción no válida. Inténtalo de nuevo.");
                     break;
@@ -496,12 +497,12 @@ public static void menuAdmin(){
             System.out.println("|          CONSULTAR INFORMACIÓN DE USUARIOS         |");
             System.out.println("|---------- ¿Qué operación deseas realizar? ---------|");
             System.out.println("|                                                    |");
-            System.out.println("|      a) Búsqueda por apellido.                     |");
-            System.out.println("|      b) Búsqueda por nombre de usuario.            |");
-            System.out.println("|      c) Búsqueda por dirección email.              |");
-            System.out.println("|      d) Búsqueda por tipo de usuario.              |");
-            System.out.println("|      e) Actualización de datos de usuario.         |");
-            System.out.println("|      f) Borrado de usuario.                        |");
+            System.out.println("|      1) Búsqueda por apellido.                     |");
+            System.out.println("|      2) Búsqueda por nombre de usuario.            |");
+            System.out.println("|      3) Búsqueda por dirección email.              |");
+            System.out.println("|      4) Búsqueda por tipo de usuario.              |");
+            System.out.println("|      5) Actualización de datos de usuario.         |");
+            System.out.println("|      6) Borrado de usuario.                        |");
             System.out.println("|                                                    |");
             System.out.println("|------------ Pulsa 0 para volver al menú -----------|");  
             System.out.println("|____________________________________________________|"); 
@@ -510,19 +511,19 @@ public static void menuAdmin(){
 
             //Switch para elección de opciones, búsqueda de información de usuarios por filtro, para administradores.
                 switch (opcion) {
-                    case 'a': buscaApellido();
+                    case 1: buscaApellido();
                         break;
-                    case 'b': buscaAlias();
+                    case 2: buscaAlias();
                         break;
-                    case 'c': buscaMail();
+                    case 3: buscaMail();
                         break;
-                    case 'd': buscaTipo();
+                    case 4: buscaTipo();
                         break;
-                    case 'e': actualizaUsuario();
+                    case 5: actualizaUsuario();
                         break;
-                    case 'f': borraUsuario();
+                    case 6: borraUsuario();
                         break;
-                    case '0': System.out.println("Volviendo al menú...");
+                    case 0: System.out.println("Volviendo al menú...");
                               filtroUser=false;    
                         break;
                     default: System.out.println("Valor introducido no válido. Prueba de nuevo.");
@@ -532,7 +533,7 @@ public static void menuAdmin(){
     }
 
 /*MÉTODOS LUCÍA*/
-//CASE a
+//CASE 1
     public static void buscaApellido(){
         System.out.println("Introduce el apellido del usuario: ");
         GestorUsers apellidos = new GestorUsers();
@@ -543,7 +544,7 @@ public static void menuAdmin(){
             System.out.println("No hay coincidencias para esta búsqueda.");
         }
     }
-//CASE b --> Lo hacemos boolean para poder manipular el éxito o no de la operación en la función actualizaUsuario.
+//CASE 2 --> Lo hacemos boolean para poder manipular el éxito o no de la operación en la función actualizaUsuario.
     public static Boolean buscaAlias(){
         System.out.println("Introduce el nombre de usuario del afiliado: ");
         GestorUsers alias = new GestorUsers();
@@ -556,7 +557,7 @@ public static void menuAdmin(){
             return false;
         }
     }
-//CASE c
+//CASE 3
     public static void buscaMail(){
         System.out.println("Introduce la dirección email del usuario: ");
         GestorUsers mail = new GestorUsers();
@@ -567,7 +568,7 @@ public static void menuAdmin(){
             System.out.println("No hay coincidencias para esta búsqueda.");
         }
     }
-//CASE d
+//CASE 4
     public static void buscaTipo(){
         System.out.println("Introduce 'admin' para listar a los administradores, 'no admin' para listar el resto de usuarios:");
         GestorUsers type = new GestorUsers();
@@ -585,7 +586,7 @@ public static void menuAdmin(){
             System.out.println("Listado de usuarios no administradores: \n" + GestorUsers.toString(arraytype));
         } 
     }
-//CASE e 
+//CASE 5 
     public static void actualizaUsuario(){
         GestorUsers updated = new GestorUsers();
         User actualizado = new User();
@@ -648,7 +649,7 @@ public static void menuAdmin(){
         }
     }
 
-//CASE f
+//CASE 6
     public static void borraUsuario(){
         System.out.println("Introduce el nombre de usuario del usuario que deseas eliminar:");
         GestorUsers borrado = new GestorUsers();
