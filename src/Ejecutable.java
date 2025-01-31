@@ -49,6 +49,7 @@ public class Ejecutable {
     public static void main(String[] args) throws Exception {
         boolean login = false;    
         int intentos = 4;
+        User userlogin;
 
         do{
             System.out.println(".____________________________________________________.");
@@ -61,7 +62,7 @@ public class Ejecutable {
             System.out.println("Contraseña: ");
             String password = sc.nextLine();
 
-            User userlogin = gestor.searchbyAlias(alias);
+            userlogin = gestor.searchbyAlias(alias);
             while(intentos>0){
                 if(userlogin == null  || (!userlogin.equals(null) && !userlogin.getPassword().equals(password))){
                     System.out.println("Usuario o contraseña incorrectos. Inténtelo de nuevo . Le quedan " + intentos + " intentos.");
@@ -713,7 +714,7 @@ public static void menuAdmin(){
         if (prestadoAct.length == 0) {
             System.out.println("No hay préstamos activos.");
         } else {
-            System.out.println("Libros prestados actualmente: \n" + prestadoAct.toString());
+            System.out.println("Libros prestados actualmente: \n" + gestorL.toString(prestadoAct));
         }
     }
 //Mostrar préstamos totales (ADMIN)
@@ -730,19 +731,19 @@ public static void menuAdmin(){
         if (libro == null || !libro.getisdisponible()) {
             System.out.println("El libro no está disponible para préstamo.");
         }
-    
-        System.out.println("Verifica la petición introduciendo tu alias:");
-        String alias = sc.nextLine();
-        User usuario = gestor.searchbyAlias(alias);
-        if (usuario == null) {
-            System.out.println("Usuario no encontrado.");
+        else{
+            System.out.println("Verifica la petición introduciendo tu alias:");
+            String alias = sc.nextLine();
+            User usuario = gestor.searchbyAlias(alias);
+            if (usuario == null) {
+                System.out.println("Usuario no encontrado.");
+            }else{
+                libro.setdisponible(false);
+                libro.setVecesPrestado(libro.getVecesPrestado() + 1);
+                usuario.setPrestamosActivos(usuario.getPrestamosActivos() + 1);
+                System.out.println("Préstamo realizado con éxito. Libro: " + libro.gettitulo());
+            }
         }
-    
-        libro.setdisponible(false);
-        libro.setVecesPrestado(libro.getVecesPrestado() + 1);
-        usuario.setPrestamosActivos(usuario.getPrestamosActivos() + 1);
-    
-        System.out.println("Préstamo realizado con éxito. Libro: " + libro.gettitulo());
     }
 
 
