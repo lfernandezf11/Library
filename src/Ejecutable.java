@@ -88,7 +88,7 @@ public class Ejecutable {
 /*Menú para usuarios Administradores */  
 public static void menuAdmin(){
     boolean admin = true;  
-    GestorLibro gestor = new GestorLibro();  
+     
 
         do{
             System.out.println(".____________________________________________________.");
@@ -142,7 +142,7 @@ public static void menuAdmin(){
                         break;
                     case 10: muestraPrestamosAct();
                         break;
-                    case 11 : gestor.dosMasPrestados().toString();                        
+                    case 11 : gestorL.dosMasPrestados().toString();                        
                     break;
                     case 12: UserMaxPrestamos();
                         break;
@@ -156,7 +156,6 @@ public static void menuAdmin(){
         }while(admin);
     }
     public static void anadirlibro(){
-        GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce el título del libro:");
                 String titulo = sc.nextLine();
                 
@@ -213,14 +212,13 @@ public static void menuAdmin(){
                 // Si la categoría es válida, creamos el libro y lo agregamos.
                 if (categoriaEnum != null) {
                     Libro libro = new Libro(titulo, autor, categoriaEnum, idLibro, fechapubli, disponible, vecesPrestado);
-                    gestor.agregarLibro(libro);
+                    gestorL.agregarLibro(libro);
                 } else {
                     System.out.println("Categoría no válida. El libro no puede ser agregado.");
                 }
     }
     public static void mostrarLibrosDisponibles() {
-        GestorLibro gestor = new GestorLibro();
-        Libro[] librosDisponibles = gestor.getLibrosDisponibles(); 
+        Libro[] librosDisponibles = gestorL.getLibrosDisponibles(); 
     
         if (librosDisponibles.length == 0) {
             System.out.println("No hay libros disponibles.");
@@ -234,9 +232,8 @@ public static void menuAdmin(){
     public static void eliminarLibro() {
         System.out.println("Introduce el título del libro a eliminar:");
         String titulo = sc.nextLine(); 
-        GestorLibro gestor = new GestorLibro();
         
-        boolean eliminado = gestor.eliminarLibro(titulo); 
+        boolean eliminado = gestorL.eliminarLibro(titulo); 
     
         if (eliminado) {
             System.out.println("El libro '" + titulo + "' ha sido eliminado.");
@@ -322,9 +319,8 @@ public static void menuAdmin(){
         }while(filtrolibro);
     }
     public static void buscarLibroporTitulo() {
-        GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce el título del libro a buscar:");
-        Libro resultado=gestor.buscarLibro(sc.nextLine());
+        Libro resultado=gestorL.buscarLibro(sc.nextLine());
         if (resultado != null) {
             System.out.println("Libro encontrado:" + resultado);
         } else {
@@ -334,10 +330,9 @@ public static void menuAdmin(){
     
 
     public static void buscarLibroporAutor() {
-        GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce el autor del libro a buscar:");
         String autor = sc.nextLine();
-        Libro[]resultado=gestor.buscarporAutor(autor);
+        Libro[]resultado=gestorL.buscarporAutor(autor);
         if (resultado.length == 0){
             System.out.println("No se encontraron libros del autor: " + autor);
         }else{
@@ -347,7 +342,6 @@ public static void menuAdmin(){
         }
     }
     public static void buscarLibroporCategoria() {
-        GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce la categoría del libro a buscar:");
         String categoria = sc.nextLine().toUpperCase(); // Convertir a mayúsculas para evitar problemas de mayúsculas/minúsculas
         
@@ -384,7 +378,7 @@ public static void menuAdmin(){
         
             // Si se encontró la categoría correspondiente
         if (categoriaEnum != null) {
-            Libro[] resultado = gestor.buscarporCategoria(categoriaEnum);
+            Libro[] resultado = gestorL.buscarporCategoria(categoriaEnum);
             if (resultado.length == 0) {
                 System.out.println("No se encontraron libros en la categoría " + categoriaEnum);
             } else {
@@ -398,10 +392,9 @@ public static void menuAdmin(){
         }
     }
     public void eliminarLibroporAutor() {
-        GestorLibro gestor = new GestorLibro();
         System.out.println("Introduce el autor del libro que desea eliminar:");
         String autor = sc.nextLine();
-        boolean eliminado = gestor.eliminarLibro(autor);
+        boolean eliminado = gestorL.eliminarLibro(autor);
         
         if (eliminado) {
             System.out.println("Los libros del autor '" + autor + "' han sido eliminados.");
@@ -411,7 +404,6 @@ public static void menuAdmin(){
     }
     public static void menuCategoriaLibro(){
         boolean filtrocategoria = true;
-        GestorLibro gestorLibro = new GestorLibro();
     do{
             System.out.println(".____________________________________________________.");
             System.out.println("|                 CATEGORÍA DE LIBROS                |"); //User.getNombre().
@@ -437,43 +429,43 @@ public static void menuAdmin(){
            int opcion = Integer.parseInt(sc.nextLine());
             switch (opcion) {
                     case 1:
-                gestorLibro.buscarporCategoria(Categorialibro.JUVENIL);
+                gestorL.buscarporCategoria(Categorialibro.JUVENIL);
                     break;
                     case 2:
-                gestorLibro.buscarporCategoria(Categorialibro.CIENCIASFICCION);
+                gestorL.buscarporCategoria(Categorialibro.CIENCIASFICCION);
                     break;
                     case 3:
-                gestorLibro.buscarporCategoria(Categorialibro.FANTASIA);
+                gestorL.buscarporCategoria(Categorialibro.FANTASIA);
                     break;
                     case 4:
-                gestorLibro.buscarporCategoria(Categorialibro.ENSAYO);
+                gestorL.buscarporCategoria(Categorialibro.ENSAYO);
                     break;
                     case 5:
-                gestorLibro.buscarporCategoria(Categorialibro.BIOGRAFIA);
+                gestorL.buscarporCategoria(Categorialibro.BIOGRAFIA);
                     break;
                     case 6:
-                gestorLibro.buscarporCategoria(Categorialibro.NOVELAGRAFICA);
+                gestorL.buscarporCategoria(Categorialibro.NOVELAGRAFICA);
                     break;
                     case 7:
-                gestorLibro.buscarporCategoria(Categorialibro.THRILLER);
+                gestorL.buscarporCategoria(Categorialibro.THRILLER);
                     break;
                     case 8:
-                gestorLibro.buscarporCategoria(Categorialibro.POESIA);
+                gestorL.buscarporCategoria(Categorialibro.POESIA);
                     break;
                     case 9:
-                gestorLibro.buscarporCategoria(Categorialibro.INFANTIL);
+                gestorL.buscarporCategoria(Categorialibro.INFANTIL);
                     break;
                     case 10:
-                gestorLibro.buscarporCategoria(Categorialibro.CLASICO);
+                gestorL.buscarporCategoria(Categorialibro.CLASICO);
                     break;
                     case 11:
-                gestorLibro.buscarporCategoria(Categorialibro.HISTORIA);
+                gestorL.buscarporCategoria(Categorialibro.HISTORIA);
                     break;
                     case 12:
-                gestorLibro.buscarporCategoria(Categorialibro.MISTERIO);
+                gestorL.buscarporCategoria(Categorialibro.MISTERIO);
                     break;
                     case 13:
-                gestorLibro.buscarporCategoria(Categorialibro.ROMANCE);
+                gestorL.buscarporCategoria(Categorialibro.ROMANCE);
                     break;
                     case 0: System.out.println("Volviendo al menú principal...");
                         filtrocategoria = false;
@@ -536,8 +528,7 @@ public static void menuAdmin(){
 //CASE 1
     public static void buscaApellido(){
         System.out.println("Introduce el apellido del usuario: ");
-        GestorUsers apellidos = new GestorUsers();
-        User[] usuarios = apellidos.searchbyApellido(sc.nextLine());
+        User[] usuarios = gestor.searchbyApellido(sc.nextLine());
         if(usuarios != null && usuarios.length > 0){ //Comprobación extra: el array no es nulo y tiene al menos un elemento.
             System.out.println("Usuarios encontrados: \n" + GestorUsers.toString(usuarios));
         }else{
@@ -547,8 +538,7 @@ public static void menuAdmin(){
 //CASE 2 --> Lo hacemos boolean para poder manipular el éxito o no de la operación en la función actualizaUsuario.
     public static Boolean buscaAlias(){
         System.out.println("Introduce el nombre de usuario del afiliado: ");
-        GestorUsers alias = new GestorUsers();
-        User encontrado = alias.searchbyAlias(sc.nextLine());
+        User encontrado = gestor.searchbyAlias(sc.nextLine());
         if(encontrado != null){ 
             System.out.println("Usuario encontrado: \n" + encontrado.toString());
             return true;
@@ -560,8 +550,7 @@ public static void menuAdmin(){
 //CASE 3
     public static void buscaMail(){
         System.out.println("Introduce la dirección email del usuario: ");
-        GestorUsers mail = new GestorUsers();
-        User coincide = mail.searchbyEmail(sc.nextLine());
+        User coincide = gestor.searchbyEmail(sc.nextLine());
         if(coincide != null){ 
             System.out.println("Usuario encontrado: \n" + coincide.toString());
         }else{
@@ -571,7 +560,6 @@ public static void menuAdmin(){
 //CASE 4
     public static void buscaTipo(){
         System.out.println("Introduce 'admin' para listar a los administradores, 'no admin' para listar el resto de usuarios:");
-        GestorUsers type = new GestorUsers();
         User [] arraytype;
         String entrada = sc.nextLine();
         while (entrada != "admin" && entrada != "no admin"){
@@ -579,16 +567,15 @@ public static void menuAdmin(){
             entrada=sc.nextLine();
         }
         if(entrada == "admin"){
-            arraytype = type.searchbyAdminNoAdmin(true);
+            arraytype = gestor.searchbyAdminNoAdmin(true);
             System.out.println("Listado de administradores: \n" + GestorUsers.toString(arraytype));
         }else{
-            arraytype = type.searchbyAdminNoAdmin(false);
+            arraytype = gestor.searchbyAdminNoAdmin(false);
             System.out.println("Listado de usuarios no administradores: \n" + GestorUsers.toString(arraytype));
         } 
     }
 //CASE 5 
     public static void actualizaUsuario(){
-        GestorUsers updated = new GestorUsers();
         User actualizado = new User();
         if(buscaAlias()){
             System.out.println("Ahora introduce los datos actualizados del usuario:");
@@ -619,11 +606,11 @@ public static void menuAdmin(){
             }
             System.out.println("¿Es administrador?: y/n ");
             String administra = sc.nextLine();
-            while(administra != "y" && administra != "n"){
+            while(!administra.equals("y") && !administra.equals("n")){
                 System.out.println("Pulsa 'y' para sí o 'n' para no.");
                 administra=sc.nextLine();
             }
-            if(administra == "y"){
+            if(administra.equals("y")){
                 actualizado.setEsAdmin(true);
             }else{
                 actualizado.setEsAdmin(false);
@@ -642,7 +629,7 @@ public static void menuAdmin(){
             }
         }
         //Verificados todos los input, llamamos al método updateUser.
-        if(updated.updateUser(actualizado) == false){
+        if(gestor.updateUser(actualizado) == false){
             System.out.println("No se pudo actualizar el usuario.");
         }else{
             System.out.println("Usuario actualizado correctamente.");
@@ -652,9 +639,8 @@ public static void menuAdmin(){
 //CASE 6
     public static void borraUsuario(){
         System.out.println("Introduce el nombre de usuario del usuario que deseas eliminar:");
-        GestorUsers borrado = new GestorUsers();
         String aliasinput = sc.nextLine();
-        if (borrado.deleteUser(aliasinput)){
+        if (gestor.deleteUser(aliasinput)){
             System.out.println("El usuario ha sido eliminado con éxito.");
         }else{
             System.out.println("Usuario no encontrado. No se ha podido realizar el borrado.");
@@ -664,7 +650,6 @@ public static void menuAdmin(){
 //AÑADIR USUARIO ADDUSER (ADMINISTRADORES)
     public static void agregaUsuario(){
         System.out.println("Ingresa los datos del nuevo usuario:");
-        GestorUsers altaUsuario = new GestorUsers();
         User nuevo = new User();
     
             //En cada setter hacemos un bucle de validación para asegurar que el método retorna true.
@@ -694,11 +679,11 @@ public static void menuAdmin(){
             }
             System.out.println("¿Es administrador?: y/n ");
             String administra = sc.nextLine();
-            while(administra != "y" && administra != "n"){
+            while(!administra.equals("y") && !administra.equals("n")){
                 System.out.println("Pulsa 'y' para sí o 'n' para no.");
                 administra=sc.nextLine();
             }
-            if(administra == "y"){
+            if(administra.equals("y")){
                 nuevo.setEsAdmin(true);
             }else{
                 nuevo.setEsAdmin(false);
@@ -716,13 +701,12 @@ public static void menuAdmin(){
                 email=sc.nextLine(); 
             }
             //Validados todos los input, implementamos el método addUser.
-            altaUsuario.addUser(nuevo);
+            gestor.addUser(nuevo);
             System.out.println("Usuario registrado.");
     }
 //Mostrar préstamos activos (ADMIN)
     public static void muestraPrestamosAct(){
-        GestorLibro prestado = new GestorLibro();
-        Libro [] prestadoAct = prestado.getLibrosPrestados();
+        Libro [] prestadoAct = gestorL.getLibrosPrestados();
         if (prestadoAct.length == 0) {
             System.out.println("No hay préstamos activos.");
         } else {
@@ -731,25 +715,22 @@ public static void menuAdmin(){
     }
 //Mostrar préstamos totales (ADMIN)
     public static void muestraPrestamosTot(){
-        GestorLibro totalPrestamos = new GestorLibro();
-        int total = totalPrestamos.getTotalPrestamos();
+        int total = gestorL.getTotalPrestamos();
         System.out.println("El número total de préstamos es " + total);
     }
 //Solicitar préstamo de libro (TODOS)
     public static void gestionaPrestamo() {
-        GestorLibro gestorLibro = new GestorLibro();
-        GestorUsers gestorUsers = new GestorUsers();
     
         System.out.println("Introduce el título del libro cuyo préstamo solicitas:");
         String titulo = sc.nextLine();
-        Libro libro = gestorLibro.buscarLibro(titulo);
+        Libro libro = gestorL.buscarLibro(titulo);
         if (libro == null || !libro.getisdisponible()) {
             System.out.println("El libro no está disponible para préstamo.");
         }
     
         System.out.println("Verifica la petición introduciendo tu alias:");
         String alias = sc.nextLine();
-        User usuario = gestorUsers.searchbyAlias(alias);
+        User usuario = gestor.searchbyAlias(alias);
         if (usuario == null) {
             System.out.println("Usuario no encontrado.");
         }
@@ -764,19 +745,17 @@ public static void menuAdmin(){
 
 //Solicitar devolución de libro (TODOS)
     public static void devuelveLibro() {
-        GestorLibro gestorLibro = new GestorLibro();
-        GestorUsers gestorUsers = new GestorUsers();
 
         System.out.println("Introduce el título del libro que deseas devolver:");
         String titulo = sc.nextLine();
-        Libro libro = gestorLibro.buscarLibro(titulo);
+        Libro libro = gestorL.buscarLibro(titulo);
         if (libro == null || libro.getisdisponible()) {
             System.out.println("El libro no está registrado como prestado.");
         }
 
         System.out.println("Verifica la devolución introduciendo tu alias:");
         String alias = sc.nextLine();
-        User usuario = gestorUsers.searchbyAlias(alias);
+        User usuario = gestor.searchbyAlias(alias);
         if (usuario == null || usuario.getPrestamosActivos() <= 0) {
             System.out.println("Usuario no encontrado o sin préstamos activos.");
         }
@@ -793,8 +772,7 @@ public static void menuAdmin(){
 
     //Usuario con más préstamos (ADMIN)
     public static void UserMaxPrestamos(){
-        GestorUsers user = new GestorUsers();
-        User maxUser = user.usuarioConMasPrestamos();
+        User maxUser = gestor.usuarioConMasPrestamos();
         System.out.println("El usuario con más préstamos activos es:\n " + maxUser.toString());
     }
 
