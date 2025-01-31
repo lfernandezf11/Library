@@ -143,7 +143,10 @@ public static void menuAdmin(){
                         break;
                     case 10: muestraPrestamosAct();
                         break;
-                    case 11 : gestorL.dosMasPrestados().toString();                        
+                    case 11 : {
+                        Libro [] masprestados = gestorL.dosMasPrestados();
+                        System.out.println(gestorL.toString(masprestados));
+                        }                       
                     break;
                     case 12: UserMaxPrestamos();
                         break;
