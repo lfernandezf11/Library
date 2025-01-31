@@ -79,12 +79,12 @@ public class GestorUsers {
     public User[] searchbyAdminNoAdmin(Boolean esAdmin){
         User[] resultado = new User[tam];
         int tipoFilled = 0;
-        for(int i=0; i<tam; i++){
-            if(usuarios[i].getEsAdmin().equals(esAdmin)){
+        for(int i=0; i<filled; i++){
+            if(this.usuarios[i].getEsAdmin().equals(esAdmin)){
                 resultado[tipoFilled]=usuarios[i];
                 tipoFilled++;
             }
-        }return Arrays.copyOf(resultado, filled);
+        }return Arrays.copyOf(resultado, tipoFilled);
     }
 
     /** updateUser actualiza la información de un Usuario, excepto userID y fechaAlta, que se establecen en el momento de creación.

@@ -102,7 +102,7 @@ public class User {
      * tras lo cual puede seguirse de cero o más ocurrencias de una segunda cadena de letras, incluyendo espacios.
      */
      public Boolean setNombre(String nombre){
-        if (nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3}[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s-]*$")) {
+        if (nombre.length() >= 2 && nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s-]+$")) {
             this.nombre = nombre;
             return true;
         }else{
@@ -110,7 +110,7 @@ public class User {
         }
     }
     public Boolean setApellido(String apellido){
-        if (apellido.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ]{3}[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s-]*$")) {
+        if (apellido.length() >= 2 && apellido.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s-]+$")) {
             this.apellido = apellido;
             return true;
         }else{
@@ -121,7 +121,7 @@ public class User {
      * mínima de 6 caracteres (que es lo que presuponemos que ocupan dos sílabas y dos números) y máximo 12.
      */
     public Boolean setAlias(String alias){
-        if (alias.matches("^(?=.{6,12})[a-z0-9]*$")) {
+        if (alias.matches("^[a-z0-9]{6,12}$")) {
             this.alias = alias;
             return true;
         }else{
@@ -132,7 +132,7 @@ public class User {
      * Longitud mínima de 6 caracteres y máxima de 8. 
      */
     public Boolean setPassword(String password){
-        if (password.matches("^(?=.{6,8})[a-z0-9_.-]*$")) {
+        if (password.matches("^[a-z0-9_.-]{6,8}$")) {
             this.password = password;
             return true;
         }else{

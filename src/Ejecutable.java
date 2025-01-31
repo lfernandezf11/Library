@@ -5,26 +5,26 @@
 import java.util.Scanner;
 
 public class Ejecutable {
-    public static Scanner sc = new Scanner(System.in); 
+    public static Scanner sc = new Scanner(System.in, "UTF-8"); 
     public static GestorUsers gestor = new GestorUsers();
     public static GestorLibro gestorL = new GestorLibro();
     
     static{
-            gestor.addUser(new User("Juan", "Pérez", "juanp", "pass123", true, 2019, "juan.perez@gmail.com", 2));
-            gestor.addUser(new User("María", "González", "mariag", "securepass", false, 2021, "maria.gonzalez@hotmail.com", 1));
-            gestor.addUser(new User("Carlos", "López", "carlosl", "carlospass", true, 2020, "carlos.lopez@outlook.es", 0));
-            gestor.addUser(new User("Ana María", "Pérez", "anap189", "ana1234", false, 2022, "ana.perez@yahoo.com", 3));
-            gestor.addUser(new User("Luis", "Martínez", "luism5", "luispass", true, 2023, "luis.martinez@gmail.com", 1));
-            gestor.addUser(new User("Elena", "González", "elenag", "elenapass", false, 2021, "elena.gonzalez@hotmail.com", 2));
-            gestor.addUser(new User("Sofía", "Pérez", "sofiap", "sofia123", true, 2020, "sofia.perez@outlook.es", 0));
-            gestor.addUser(new User("Diego", "López", "diego2l", "diegopass", false, 2025, "diego.lopez@yahoo.com", 1));
-            gestor.addUser(new User("Laura", "Martínez", "lauramm", "laurapass", true, 2022, "laura.martinez@gmail.com", 2));
-            gestor.addUser(new User("Pedro", "García", "pedrog7", "pedropass", false, 2021, "pedro.garcia@hotmail.com", 0));
-            gestor.addUser(new User("Clara", "García", "clarag19", "clarapass", false, 2025, "clara.garcia@outlook.es", 1));
-            gestor.addUser(new User("Jorge", "Pérez", "jorgep7", "jorgepass", true, 2019, "jorge.perez@yahoo.com", 4));
-            gestor.addUser(new User("Lucía", "González", "lucia12g", "luciapass", false, 2023, "lucia.gonzalez@gmail.com", 0));
-            gestor.addUser(new User("Raúl", "López", "raulop", "raulpass", true, 2022, "raul.lopez@hotmail.com", 1));
-            gestor.addUser(new User("Marta", "Martínez", "martam21", "martapass", false, 2021, "marta.martinez@outlook.es", 2));
+            gestor.addUser(new User("Juan", "Perez", "juanp", "pass123", true, 2019, "juan.perez@gmail.com", 2));
+            gestor.addUser(new User("Maria", "Gonzalez", "mariag", "securepass", false, 2021, "maria.gonzalez@hotmail.com", 1));
+            gestor.addUser(new User("Carlos", "Lpoez", "carlosl", "carlospass", true, 2020, "carlos.lopez@outlook.es", 0));
+            gestor.addUser(new User("Ana Maria", "Perez", "anap189", "ana1234", false, 2022, "ana.perez@yahoo.com", 3));
+            gestor.addUser(new User("Luis", "Martinez", "luism5", "luispass", true, 2023, "luis.martinez@gmail.com", 1));
+            gestor.addUser(new User("Elena", "Gonzalez", "elenag", "elenapass", false, 2021, "elena.gonzalez@hotmail.com", 2));
+            gestor.addUser(new User("Sofía", "Perez", "sofiap", "sofia123", true, 2020, "sofia.perez@outlook.es", 0));
+            gestor.addUser(new User("Diego", "Lopez", "diego2l", "diegopass", false, 2025, "diego.lopez@yahoo.com", 1));
+            gestor.addUser(new User("Laura", "Martinez", "lauramm", "laurapass", true, 2022, "laura.martinez@gmail.com", 2));
+            gestor.addUser(new User("Pedro", "Garcia", "pedrog7", "pedropass", false, 2021, "pedro.garcia@hotmail.com", 0));
+            gestor.addUser(new User("Clara", "Garcia", "clarag19", "clarapass", false, 2025, "clara.garcia@outlook.es", 1));
+            gestor.addUser(new User("Jorge", "Perez", "jorgep7", "jorgepass", true, 2019, "jorge.perez@yahoo.com", 4));
+            gestor.addUser(new User("Lucia", "Gonzalez", "lucia12g", "luciapass", false, 2023, "lucia.gonzalez@gmail.com", 0));
+            gestor.addUser(new User("Raul", "Lopez", "raulop", "raulpass", true, 2022, "raul.lopez@hotmail.com", 1));
+            gestor.addUser(new User("Marta", "Rodilla", "martam21", "martapass", false, 2021, "marta.martinez@outlook.es", 2));
 
             gestorL.agregarLibro(new Libro("El niño con el pijama de rayas", "John Boyne", Categorialibro.JUVENIL, 1, 2006, true, 0));
             gestorL.agregarLibro(new Libro("Dune", "Frank Herbert", Categorialibro.CIENCIASFICCION, 2, 1965, true, 5));
@@ -173,6 +173,7 @@ public static void menuAdmin(){
                 
                 System.out.println("Introduce la categoría del libro (JUVENIL, CIENCIASFICCION, FANTASIA, ENSAYO, BIOGRAFIA, NOVELAGRAFICA, THRILLER, POESIA, INFANTIL, CLASICO, HISTORIA, MISTERIO, ROMANCE):");
                 String categoria = sc.nextLine();
+                categoria.toUpperCase();
 
                 System.out.println("Introduce el número de veces que el libro ha sido prestado: ");
                 int vecesPrestado = Integer.parseInt(sc.nextLine());
@@ -223,7 +224,7 @@ public static void menuAdmin(){
         if (librosDisponibles.length == 0) {
             System.out.println("No hay libros disponibles.");
         } else {
-            System.out.println("Libros disponibles:" + librosDisponibles.toString());
+            System.out.println("Libros disponibles:");
             for (Libro libro : librosDisponibles) {
                 System.out.println(libro);  // Aquí muestra el libro con su método toString()
             }
@@ -560,18 +561,18 @@ public static void menuAdmin(){
 //CASE 4
     public static void buscaTipo(){
         System.out.println("Introduce 'admin' para listar a los administradores, 'no admin' para listar el resto de usuarios:");
-        User [] arraytipo;
         String entrada = sc.nextLine();
+        User[] usuarios;
         while (!entrada.equals("admin") && !entrada.equals("no admin")){
             System.out.println("Input no válido. Escribe 'admin' o 'no admin' (sin comillas):");
             entrada=sc.nextLine();
         }
         if(entrada.equals("admin")){
-            arraytipo = gestor.searchbyAdminNoAdmin(true);
-            System.out.println("Listado de administradores: \n" + arraytipo.toString());
+            usuarios=gestor.searchbyAdminNoAdmin(true);
+            System.out.println("Listado de administradores: \n" + gestor.toString(usuarios));
         }else{
-            arraytipo = gestor.searchbyAdminNoAdmin(false);
-            System.out.println("Listado de usuarios no administradores: \n" + arraytipo.toString());
+            usuarios=gestor.searchbyAdminNoAdmin(false);;
+            System.out.println("Listado de usuarios no administradores: \n" + gestor.toString(usuarios));
         } 
     }
 //CASE 5 
@@ -655,9 +656,11 @@ public static void menuAdmin(){
             //En cada setter hacemos un bucle de validación para asegurar que el método retorna true.
             System.out.println("Nombre: "); 
             String nombre = sc.nextLine();
-            while(nuevo.setNombre(nombre)== false){
+            System.out.println("Nombre capturado: '" + nombre + "'");
+            while(!nuevo.setNombre(nombre)){
                 System.out.println("El nombre ha de comenzar por al menos tres letras. Introdúcelo de nuevo: ");
                 nombre=sc.nextLine();
+                System.out.println("Nombre capturado: '" + nombre + "'");
             }
             System.out.println("Apellido: ");
             String apellido = sc.nextLine();
@@ -668,7 +671,7 @@ public static void menuAdmin(){
             System.out.println("Nombre de Usuario: ");
             String alias = sc.nextLine();
             while(nuevo.setAlias(alias)== false){
-                System.out.println("El alias sólo puede contener caracteres alfanuméricos en minúscula y sin espacios. Introdúcelo de nuevo: ");
+                System.out.println("El alias sólo puede contener caracteres alfanuméricos en minúscula, sin acentos ni espacios. Introdúcelo de nuevo: ");
                 alias=sc.nextLine();
             }
             System.out.println("Contraseña: ");
